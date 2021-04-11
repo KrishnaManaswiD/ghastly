@@ -10,6 +10,7 @@ class MyWidget(QtWidgets.QWidget):
 
         # some variables
         self.listOfFilesToCombine = []
+        self.indexOfSelectedItem = -1
 
         # window settings
         self.setWindowTitle("Ghastly")
@@ -30,7 +31,9 @@ class MyWidget(QtWidgets.QWidget):
         # add key bindings to buttons
         self.btn_add.clicked.connect(self.openFile)
         self.btn_saveAs.clicked.connect(self.selectSaveLocation)
+        self.btn_remove.clicked.connect(self.removeItem)
 
+        self.listWidget.itemClicked.connect(self.setIndexOfSelecteditem)
 
         # create layout and add widgets
         self.firstLayout = QtWidgets.QGridLayout(self)
@@ -47,26 +50,11 @@ class MyWidget(QtWidgets.QWidget):
         #self.firstLayout.setSizeConstraint(QtWidgets.QLayout.SetFixedSize)
         self.setFixedSize(700,200)
         
-        
-    def openFile(self):
-        # options = QtWidgets.QFileDialog.Options()
-        # if not self.native.isChecked():
-        #     options |= QtWidgets.QFileDialog.DontUseNativeDialog
-        # fileName, filtr = QtWidgets.QFileDialog.getOpenFileName(self,
-        #         "QFileDialog.getOpenFileName()",
-        #         self.openFileNameLabel.text(),
-        #         "All Files (*);;Text Files (*.txt)", "", options)
-        # if fileName:
-        #     self.openFileNameLabel.setText(fileName)
 
+    def openFile(self):
         files, filtr = QtWidgets.QFileDialog.getOpenFileNames(self, "Open Files", 'C:\\', "*.pdf")
         self.listOfFilesToCombine = files
         self.updateList()
-
-
-    def selectSaveLocation(self):
-        saveFileLocation = QtWidgets.QFileDialog.getSaveFileName(self, "Open Files", 'C:\\', "*.pdf")
-        self.txt_saveLocation.setText(saveFileLocation[0])
 
 
     def updateList(self):
@@ -74,6 +62,30 @@ class MyWidget(QtWidgets.QWidget):
             self.listWidget.addItem(item)
 
 
+    def selectSaveLocation(self):
+        saveFileLocation = QtWidgets.QFileDialog.getSaveFileName(self, "Open Files", 'C:\\', "*.pdf")
+        self.txt_saveLocation.setText(saveFileLocation[0])
+
+
+    def combineFiles(self):
+        pass
+
+
+    def moveItemUp(self):
+        pass
+
+
+    def moveItemDown(self):
+        pass
+
+    
+    def removeItem(self):
+        current = self.listWidget.currentItem()
+        print(self.listWidget.row(current))
+
+    
+    def setIndexOfSelecteditem(self, item):
+        pass
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
