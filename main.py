@@ -37,6 +37,7 @@ class MyWidget(QtWidgets.QWidget):
         self.btn_moveUp.clicked.connect(self.moveItemUp)
         self.btn_moveDown.clicked.connect(self.moveItemDown)
         self.btn_gsLocation.clicked.connect(self.selectGSLocation)
+        self.btn_combine.clicked.connect(self.combineFiles)
 
         # create layout and add widgets
         self.firstLayout = QtWidgets.QGridLayout(self)
@@ -73,7 +74,7 @@ class MyWidget(QtWidgets.QWidget):
 
 
     def combineFiles(self):
-        pass
+        subprocess.run(self.txt_gsLocation.text())
 
 
     def moveItemUp(self):
