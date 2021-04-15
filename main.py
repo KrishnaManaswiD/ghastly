@@ -26,6 +26,9 @@ class MyWidget(QtWidgets.QWidget):
         self.btn_remove = QtWidgets.QPushButton("Remove")
         self.btn_saveAs = QtWidgets.QPushButton("Save as")
         self.btn_combine = QtWidgets.QPushButton("Combine")
+
+        self.btn_gsLocation = QtWidgets.QPushButton("GS location")
+        self.txt_gsLocation = QtWidgets.QLineEdit("")
         
         # add key bindings to buttons
         self.btn_add.clicked.connect(self.openFile)
@@ -33,6 +36,7 @@ class MyWidget(QtWidgets.QWidget):
         self.btn_remove.clicked.connect(self.removeItem)
         self.btn_moveUp.clicked.connect(self.moveItemUp)
         self.btn_moveDown.clicked.connect(self.moveItemDown)
+        self.btn_gsLocation.clicked.connect(self.selectGSLocation)
 
         # create layout and add widgets
         self.firstLayout = QtWidgets.QGridLayout(self)
@@ -42,9 +46,11 @@ class MyWidget(QtWidgets.QWidget):
         self.firstLayout.addWidget(self.btn_remove, 2, 2)
         self.firstLayout.addWidget(self.btn_moveUp, 3, 2)
         self.firstLayout.addWidget(self.btn_moveDown, 4, 2)
-        self.firstLayout.addWidget(self.btn_saveAs, 5, 0)
-        self.firstLayout.addWidget(self.txt_saveLocation, 5, 1)
-        self.firstLayout.addWidget(self.btn_combine, 5, 2)
+        self.firstLayout.addWidget(self.btn_gsLocation, 5, 0)
+        self.firstLayout.addWidget(self.txt_gsLocation, 5, 1)
+        self.firstLayout.addWidget(self.btn_saveAs, 6, 0)
+        self.firstLayout.addWidget(self.txt_saveLocation, 6, 1)
+        self.firstLayout.addWidget(self.btn_combine, 6, 2)
 
         #self.firstLayout.setSizeConstraint(QtWidgets.QLayout.SetFixedSize)
         self.setFixedSize(700,200)
@@ -52,19 +58,18 @@ class MyWidget(QtWidgets.QWidget):
 
     def openFile(self):
         files, filtr = QtWidgets.QFileDialog.getOpenFileNames(self, "Open Files", 'C:\\', "*.pdf")
-        self.listOfFilesToCombine = files
+        self.listOfFilesToCombine.extend(files)
         self.updateList()
 
 
-    def updateList(self):
-        self.listWidget.clear()
-        for item in self.listOfFilesToCombine:
-            self.listWidget.addItem(item)
-
-
     def selectSaveLocation(self):
-        saveFileLocation = QtWidgets.QFileDialog.getSaveFileName(self, "Open Files", 'C:\\', "*.pdf")
+        saveFileLocation = QtWidgets.QFileDialog.getSaveFileName(self, "Save As", 'C:\\', "*.pdf")
         self.txt_saveLocation.setText(saveFileLocation[0])
+
+
+    def selectGSLocation(self):
+        gsLocation = QtWidgets.QFileDialog.getOpenFileName(self, "Browse for ghost script", 'C:\\', "*.exe")
+        self.txt_gsLocation.setText(gsLocation[0])
 
 
     def combineFiles(self):
@@ -91,6 +96,12 @@ class MyWidget(QtWidgets.QWidget):
         current = self.listWidget.currentItem()
         self.listOfFilesToCombine.pop(self.listWidget.row(current))
         self.updateList()
+
+
+    def updateList(self):
+        self.listWidget.clear()
+        for item in self.listOfFilesToCombine:
+            self.listWidget.addItem(item)
 
 
 if __name__ == "__main__":
