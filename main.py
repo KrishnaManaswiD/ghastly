@@ -71,10 +71,19 @@ class MyWidget(QtWidgets.QWidget):
     def selectGSLocation(self):
         gsLocation = QtWidgets.QFileDialog.getOpenFileName(self, "Browse for ghost script", 'C:\\', "*.exe")
         self.txt_gsLocation.setText(gsLocation[0])
+        # C:/Program Files/gs/gs9.53.3/bin/
 
 
     def combineFiles(self):
-        subprocess.run(self.txt_gsLocation.text())
+        gsExecutable = self.txt_gsLocation.text()
+        basicArgs = "-dBATCH -dNOPAUSE -sDEVICE=pdfwrite -dAutoRotatePages=/None -dAutoFilterColorImages=false -dAutoFilterGrayImages=false -dColorImageFilter=/FlateEncode -dGrayImageFilter=/FlateEncode -dDownsampleMonoImages=false -dDownsampleGrayImages=false"
+        outputFile = "-sOutputFile="+'"'+self.txt_saveLocation.text()+'"'
+        filesToCombine = ""
+        for item in self.listOfFilesToCombine:
+            filesToCombine += ' "' + item + '"'
+
+        command = gsExecutable + " " + basicArgs + " " + outputFile + " " + filesToCombine
+        subprocess.run(command)
 
 
     def moveItemUp(self):
