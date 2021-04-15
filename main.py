@@ -10,7 +10,6 @@ class MyWidget(QtWidgets.QWidget):
 
         # some variables
         self.listOfFilesToCombine = []
-        self.indexOfSelectedItem = -1
 
         # window settings
         self.setWindowTitle("Ghastly")
@@ -32,8 +31,8 @@ class MyWidget(QtWidgets.QWidget):
         self.btn_add.clicked.connect(self.openFile)
         self.btn_saveAs.clicked.connect(self.selectSaveLocation)
         self.btn_remove.clicked.connect(self.removeItem)
-
-        self.listWidget.itemClicked.connect(self.setIndexOfSelecteditem)
+        self.btn_moveUp.clicked.connect(self.moveItemUp)
+        self.btn_moveDown.clicked.connect(self.moveItemDown)
 
         # create layout and add widgets
         self.firstLayout = QtWidgets.QGridLayout(self)
@@ -58,6 +57,7 @@ class MyWidget(QtWidgets.QWidget):
 
 
     def updateList(self):
+        self.listWidget.clear()
         for item in self.listOfFilesToCombine:
             self.listWidget.addItem(item)
 
@@ -72,20 +72,26 @@ class MyWidget(QtWidgets.QWidget):
 
 
     def moveItemUp(self):
-        pass
+        current = self.listWidget.currentItem()
+        currentSelectedIndex = self.listWidget.row(current)
+        if currentSelectedIndex > 0:
+            self.listOfFilesToCombine.insert(currentSelectedIndex-1, self.listOfFilesToCombine.pop(currentSelectedIndex))
+            self.updateList()
 
 
     def moveItemDown(self):
-        pass
+        current = self.listWidget.currentItem()
+        currentSelectedIndex = self.listWidget.row(current)
+        if currentSelectedIndex < len(self.listOfFilesToCombine)-1:
+            self.listOfFilesToCombine.insert(currentSelectedIndex+1, self.listOfFilesToCombine.pop(currentSelectedIndex))
+            self.updateList()
 
     
     def removeItem(self):
         current = self.listWidget.currentItem()
-        print(self.listWidget.row(current))
+        self.listOfFilesToCombine.pop(self.listWidget.row(current))
+        self.updateList()
 
-    
-    def setIndexOfSelecteditem(self, item):
-        pass
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
