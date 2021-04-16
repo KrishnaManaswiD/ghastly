@@ -1,8 +1,6 @@
 import sys
-import random
 import subprocess
 from PySide6 import QtCore, QtWidgets, QtGui
-import shutil
 
 class MyWidget(QtWidgets.QWidget):
     def __init__(self):
@@ -75,7 +73,10 @@ class MyWidget(QtWidgets.QWidget):
 
 
     def combineFiles(self):
-        gsExecutable = self.txt_gsLocation.text()
+        if sys.platform == "win32":
+            gsExecutable = self.txt_gsLocation.text()
+        elif sys.platform == "linux":
+            gsExecutable = "gs"
         basicArgs = "-dBATCH -dNOPAUSE -sDEVICE=pdfwrite -dAutoRotatePages=/None -dAutoFilterColorImages=false -dAutoFilterGrayImages=false -dColorImageFilter=/FlateEncode -dGrayImageFilter=/FlateEncode -dDownsampleMonoImages=false -dDownsampleGrayImages=false"
         outputFile = "-sOutputFile="+'"'+self.txt_saveLocation.text()+'"'
         filesToCombine = ""
