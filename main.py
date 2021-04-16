@@ -51,23 +51,23 @@ class MyWidget(QtWidgets.QWidget):
         self.firstLayout.addWidget(self.txt_saveLocation, 6, 1)
         self.firstLayout.addWidget(self.btn_combine, 6, 2)
 
-        #self.firstLayout.setSizeConstraint(QtWidgets.QLayout.SetFixedSize)
+        # set widget size
         self.setFixedSize(700,200)
         
 
     def openFile(self):
-        files, filtr = QtWidgets.QFileDialog.getOpenFileNames(self, "Open Files", 'C:\\', "*.pdf")
+        files, filtr = QtWidgets.QFileDialog.getOpenFileNames(self, "Open Files", QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.DocumentsLocation), "*.pdf")
         self.listOfFilesToCombine.extend(files)
         self.updateList()
 
 
     def selectSaveLocation(self):
-        saveFileLocation = QtWidgets.QFileDialog.getSaveFileName(self, "Save As", 'C:\\', "*.pdf")
+        saveFileLocation = QtWidgets.QFileDialog.getSaveFileName(self, "Save As", QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.DocumentsLocation), "*.pdf")
         self.txt_saveLocation.setText(saveFileLocation[0])
 
 
     def selectGSLocation(self):
-        gsLocation = QtWidgets.QFileDialog.getOpenFileName(self, "Browse for ghost script", 'C:\\', "*.exe")
+        gsLocation = QtWidgets.QFileDialog.getOpenFileName(self, "Browse for ghost script", QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.HomeLocation), "*.exe")
         self.txt_gsLocation.setText(gsLocation[0])
         # C:/Program Files/gs/gs9.53.3/bin/
 
@@ -119,11 +119,6 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication([])
 
     widget = MyWidget()
-    widget.resize(800, 600)
     widget.show()
 
-    # command = ['cmd', '/k', 'dir', '\\gswin64.exe', '/s']
-    # command = ['where', '/r', 'C:', 'gswin64.exe']
-    # a = subprocess.Popen(command)
-    # print(a)
     sys.exit(app.exec_())
