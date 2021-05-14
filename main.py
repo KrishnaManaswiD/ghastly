@@ -17,14 +17,15 @@ class MyWidget(QtWidgets.QWidget):
         # menu bar
         self.menuBar = QtWidgets.QMenuBar()
         
+        # - file menu
         self.file_menu = QtWidgets.QMenu("File")
         self.menuBar.addMenu(self.file_menu)
+
         exit_action = QtGui.QAction("Exit", self)
-        #openAct.setShortcuts(QKeySequence.Open)
-        exit_action.setToolTip("Close the application")
         exit_action.triggered.connect(self.closeApplication)
         self.file_menu.addAction(exit_action)
 
+        # - help menu
         self.help_action = self.menuBar.addAction("Help")
         self.help_action.triggered.connect(self.displayHelp)
 
@@ -82,6 +83,16 @@ class MyWidget(QtWidgets.QWidget):
         self.mainLayout.addLayout(self.gridLayout)
 
         self.mainLayout.addWidget(self.statusBar)
+
+        ## Keyboard Shortcuts
+        self.shortcut_open = QtGui.QShortcut(QtGui.QKeySequence('Ctrl+O'), self)
+        self.shortcut_open.activated.connect(self.openFile)
+
+        self.shortcut_closeApp = QtGui.QShortcut(QtGui.QKeySequence('Alt+F4'), self)
+        self.shortcut_closeApp.activated.connect(self.closeApplication)
+
+        self.shortcut_help = QtGui.QShortcut(QtGui.QKeySequence('F1'), self)
+        self.shortcut_help.activated.connect(self.displayHelp)
 
         ## set widget size
         self.setFixedSize(700,300)
