@@ -6,34 +6,45 @@ class MyWidget(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
 
-        # some variables
+        ## some variables
         self.listOfFilesToCombine = []
 
-        # window settings
+        ## window settings
         self.setWindowTitle("Ghastly")
         self.setWindowIcon(QtGui.QIcon('icon.png'))
 
-        # create widgets
+        ## create widgets
+        # menu bar
+        self.menuBar = QtWidgets.QMenuBar()
+        self.file_menu = self.menuBar.addMenu("File")
+        self.file_menu = self.menuBar.addMenu("Help")
+
+        # labels
         self.lbl_combineFilesPrompt = QtWidgets.QLabel("Choose files to combine")
-        self.txt_saveLocation = QtWidgets.QLineEdit("")
+        
+        # list that displayes files
         self.listWidget = QtWidgets.QListWidget()
         self.listWidget.setDragDropMode(QtWidgets.QAbstractItemView.InternalMove)
 
+        # buttons
         self.btn_moveUp = QtWidgets.QPushButton("Move Up")
         self.btn_moveDown = QtWidgets.QPushButton("Move Down")
         self.btn_add = QtWidgets.QPushButton("Add Files")
         self.btn_remove = QtWidgets.QPushButton("Remove")
         self.btn_saveAs = QtWidgets.QPushButton("Save as")
         self.btn_combine = QtWidgets.QPushButton("Combine")
-
         self.btn_gsLocation = QtWidgets.QPushButton("GS location")
+        
+        # editable texts
         self.txt_gsLocation = QtWidgets.QLineEdit("")
+        self.txt_saveLocation = QtWidgets.QLineEdit("")
 
+        # status bar
         self.statusBar = QtWidgets.QStatusBar()
         self.statusBar.showMessage("Ready")
         self.statusBar.setSizeGripEnabled(False)
         
-        # add key bindings to buttons
+        ## add key bindings to buttons
         self.btn_add.clicked.connect(self.openFile)
         self.btn_saveAs.clicked.connect(self.selectSaveLocation)
         self.btn_remove.clicked.connect(self.removeItem)
@@ -42,23 +53,29 @@ class MyWidget(QtWidgets.QWidget):
         self.btn_gsLocation.clicked.connect(self.selectGSLocation)
         self.btn_combine.clicked.connect(self.combineFiles)
 
-        # create layout and add widgets
-        self.mainLayout = QtWidgets.QGridLayout(self)
-        self.mainLayout.addWidget(self.lbl_combineFilesPrompt, 0, 0)
-        self.mainLayout.addWidget(self.listWidget, 1, 0, 4, 2)
-        self.mainLayout.addWidget(self.btn_add, 1, 2)
-        self.mainLayout.addWidget(self.btn_remove, 2, 2)
-        self.mainLayout.addWidget(self.btn_moveUp, 3, 2)
-        self.mainLayout.addWidget(self.btn_moveDown, 4, 2)
-        self.mainLayout.addWidget(self.btn_gsLocation, 5, 0)
-        self.mainLayout.addWidget(self.txt_gsLocation, 5, 1)
-        self.mainLayout.addWidget(self.btn_saveAs, 6, 0)
-        self.mainLayout.addWidget(self.txt_saveLocation, 6, 1)
-        self.mainLayout.addWidget(self.btn_combine, 6, 2)
-        self.mainLayout.addWidget(self.statusBar, 7, 0, 1, 3)
+        ## create layout and add widgets
+        self.mainLayout = QtWidgets.QVBoxLayout(self)
+        self.mainLayout.addWidget(self.menuBar)
 
-        # set widget size
-        self.setFixedSize(700,250)
+        # a grid layout that is nested within the main layout
+        self.gridLayout = QtWidgets.QGridLayout(self)
+        self.gridLayout.addWidget(self.lbl_combineFilesPrompt, 0, 0)
+        self.gridLayout.addWidget(self.listWidget, 1, 0, 4, 2)
+        self.gridLayout.addWidget(self.btn_add, 1, 2)
+        self.gridLayout.addWidget(self.btn_remove, 2, 2)
+        self.gridLayout.addWidget(self.btn_moveUp, 3, 2)
+        self.gridLayout.addWidget(self.btn_moveDown, 3, 2)
+        self.gridLayout.addWidget(self.btn_gsLocation, 5, 0)
+        self.gridLayout.addWidget(self.txt_gsLocation, 5, 1)
+        self.gridLayout.addWidget(self.btn_saveAs, 6, 0)
+        self.gridLayout.addWidget(self.txt_saveLocation, 6, 1)
+        self.gridLayout.addWidget(self.btn_combine, 6, 2)
+        self.mainLayout.addLayout(self.gridLayout)
+
+        self.mainLayout.addWidget(self.statusBar)
+
+        ## set widget size
+        self.setFixedSize(700,300)
         
 
     def openFile(self):
