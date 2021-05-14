@@ -16,17 +16,17 @@ class MyWidget(QtWidgets.QWidget):
         ## create widgets
         # menu bar
         self.menuBar = QtWidgets.QMenuBar()
+        
         self.file_menu = QtWidgets.QMenu("File")
         self.menuBar.addMenu(self.file_menu)
-        self.help_menu = self.menuBar.addMenu("Help")
-        #self.menuBar.triggered[QtGui.QAction].connect(self.processMenuBarTriggers)
-
-        exit_action = QtGui.QAction("Exit", self, QtWidgets.QWidget.close)
+        exit_action = QtGui.QAction("Exit", self)
         #openAct.setShortcuts(QKeySequence.Open)
-        exit_action.setStatusTip("Close the application")
+        exit_action.setToolTip("Close the application")
         exit_action.triggered.connect(self.closeApplication)
-
         self.file_menu.addAction(exit_action)
+
+        self.help_action = self.menuBar.addAction("Help")
+        self.help_action.triggered.connect(self.displayHelp)
 
         # labels
         self.lbl_combineFilesPrompt = QtWidgets.QLabel("Choose files to combine")
@@ -73,7 +73,7 @@ class MyWidget(QtWidgets.QWidget):
         self.gridLayout.addWidget(self.btn_add, 1, 2)
         self.gridLayout.addWidget(self.btn_remove, 2, 2)
         self.gridLayout.addWidget(self.btn_moveUp, 3, 2)
-        self.gridLayout.addWidget(self.btn_moveDown, 3, 2)
+        self.gridLayout.addWidget(self.btn_moveDown, 4, 2)
         self.gridLayout.addWidget(self.btn_gsLocation, 5, 0)
         self.gridLayout.addWidget(self.txt_gsLocation, 5, 1)
         self.gridLayout.addWidget(self.btn_saveAs, 6, 0)
@@ -161,12 +161,39 @@ class MyWidget(QtWidgets.QWidget):
         for item in self.listOfFilesToCombine:
             self.listWidget.addItem(item)
 
-    def processMenuBarTriggers(self,trigger):
-        if trigger.text() == "Exit":
-            sys.exit(self.exec_())
 
-    def closeApplication(self, event: QtGui.QCloseEvent):
+    def closeApplication(self):
         sys.exit()  # is this the correct way to do it?
+
+    
+    def displayHelp(self):
+        helpMessageBox = QtWidgets.QMessageBox()
+        helpMessageBox.setWindowTitle("Help")
+        helpMessageBox.setWindowIcon(QtGui.QIcon('icon.png'))
+        
+        helpMessageBox.setText("Steps to use this software")
+        helpMessageBox.setTextFormat(QtCore.Qt.RichText)
+        helpMessageBox.setInformativeText("Step 1: Download and install ghostscript (3rd party software)\n"+
+        "   Visit https://www.ghostscript.com/download/gsdnld.html \n" +
+        "   Download the version suited to your operating system \n" +
+        "   Install it to an accessible location \n\n" +
+        "Step 2: Set the path to the executable by clicking on the GS location button \n" +
+        "   On Windows, the executable may be located in the bin folder in the installed location - gswin64.exe \n\n" +
+        "Step 3: Choose the pdf files that you want to combine by clicking the Add Files button \n" +
+        "   You can add multiple files at once \n" +
+        "   You can change the order by clicking on a file in the list and using the Move Up or Move Down buttons \n" +
+        "   You can remove a file by selecting it from the list and clicking on the Remove button \n\n" +
+        "Step 4: Choose a location to save the combined file \n" +
+        "   Click on the Save as button choose a file name and location for the combined output file \n\n" +
+        "Step 5: Combine the files \n" +
+        "   Click on the Combine button when ready")
+        helpMessageBox.setStyleSheet("QLabel{min-width: 600px;}")  # hacky way to set size
+        helpMessageBox.exec_()
+
+        #QtWidgets.QMessageBox.information(self, "Help",
+        #    "The <b>Application</b> example demonstrates how to "
+        #       "write modern GUI applications using Qt, with a menu bar, "
+        #       "toolbars, and a status bar.")
 
 
 if __name__ == "__main__":
