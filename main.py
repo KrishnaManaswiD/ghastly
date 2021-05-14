@@ -16,8 +16,17 @@ class MyWidget(QtWidgets.QWidget):
         ## create widgets
         # menu bar
         self.menuBar = QtWidgets.QMenuBar()
-        self.file_menu = self.menuBar.addMenu("File")
-        self.file_menu = self.menuBar.addMenu("Help")
+        self.file_menu = QtWidgets.QMenu("File")
+        self.menuBar.addMenu(self.file_menu)
+        self.help_menu = self.menuBar.addMenu("Help")
+        #self.menuBar.triggered[QtGui.QAction].connect(self.processMenuBarTriggers)
+
+        exit_action = QtGui.QAction("Exit", self, QtWidgets.QWidget.close)
+        #openAct.setShortcuts(QKeySequence.Open)
+        exit_action.setStatusTip("Close the application")
+        exit_action.triggered.connect(self.closeApplication)
+
+        self.file_menu.addAction(exit_action)
 
         # labels
         self.lbl_combineFilesPrompt = QtWidgets.QLabel("Choose files to combine")
@@ -151,6 +160,13 @@ class MyWidget(QtWidgets.QWidget):
         self.listWidget.clear()
         for item in self.listOfFilesToCombine:
             self.listWidget.addItem(item)
+
+    def processMenuBarTriggers(self,trigger):
+        if trigger.text() == "Exit":
+            sys.exit(self.exec_())
+
+    def closeApplication(self, event: QtGui.QCloseEvent):
+        sys.exit()  # is this the correct way to do it?
 
 
 if __name__ == "__main__":
