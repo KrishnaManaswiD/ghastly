@@ -17,6 +17,7 @@ class MyWidget(QtWidgets.QWidget):
         self.lbl_combineFilesPrompt = QtWidgets.QLabel("Choose files to combine")
         self.txt_saveLocation = QtWidgets.QLineEdit("")
         self.listWidget = QtWidgets.QListWidget()
+        self.listWidget.setDragDropMode(QtWidgets.QAbstractItemView.InternalMove)
 
         self.btn_moveUp = QtWidgets.QPushButton("Move Up")
         self.btn_moveDown = QtWidgets.QPushButton("Move Down")
@@ -27,6 +28,10 @@ class MyWidget(QtWidgets.QWidget):
 
         self.btn_gsLocation = QtWidgets.QPushButton("GS location")
         self.txt_gsLocation = QtWidgets.QLineEdit("")
+
+        self.statusBar = QtWidgets.QStatusBar()
+        self.statusBar.showMessage("Ready")
+        self.statusBar.setSizeGripEnabled(False)
         
         # add key bindings to buttons
         self.btn_add.clicked.connect(self.openFile)
@@ -38,21 +43,22 @@ class MyWidget(QtWidgets.QWidget):
         self.btn_combine.clicked.connect(self.combineFiles)
 
         # create layout and add widgets
-        self.firstLayout = QtWidgets.QGridLayout(self)
-        self.firstLayout.addWidget(self.lbl_combineFilesPrompt, 0, 0)
-        self.firstLayout.addWidget(self.listWidget, 1, 0, 4, 2)
-        self.firstLayout.addWidget(self.btn_add, 1, 2)
-        self.firstLayout.addWidget(self.btn_remove, 2, 2)
-        self.firstLayout.addWidget(self.btn_moveUp, 3, 2)
-        self.firstLayout.addWidget(self.btn_moveDown, 4, 2)
-        self.firstLayout.addWidget(self.btn_gsLocation, 5, 0)
-        self.firstLayout.addWidget(self.txt_gsLocation, 5, 1)
-        self.firstLayout.addWidget(self.btn_saveAs, 6, 0)
-        self.firstLayout.addWidget(self.txt_saveLocation, 6, 1)
-        self.firstLayout.addWidget(self.btn_combine, 6, 2)
+        self.mainLayout = QtWidgets.QGridLayout(self)
+        self.mainLayout.addWidget(self.lbl_combineFilesPrompt, 0, 0)
+        self.mainLayout.addWidget(self.listWidget, 1, 0, 4, 2)
+        self.mainLayout.addWidget(self.btn_add, 1, 2)
+        self.mainLayout.addWidget(self.btn_remove, 2, 2)
+        self.mainLayout.addWidget(self.btn_moveUp, 3, 2)
+        self.mainLayout.addWidget(self.btn_moveDown, 4, 2)
+        self.mainLayout.addWidget(self.btn_gsLocation, 5, 0)
+        self.mainLayout.addWidget(self.txt_gsLocation, 5, 1)
+        self.mainLayout.addWidget(self.btn_saveAs, 6, 0)
+        self.mainLayout.addWidget(self.txt_saveLocation, 6, 1)
+        self.mainLayout.addWidget(self.btn_combine, 6, 2)
+        self.mainLayout.addWidget(self.statusBar, 7, 0, 1, 3)
 
         # set widget size
-        self.setFixedSize(700,200)
+        self.setFixedSize(700,250)
         
 
     def openFile(self):
@@ -73,18 +79,33 @@ class MyWidget(QtWidgets.QWidget):
 
 
     def combineFiles(self):
+        self.statusBar.showMessage("Combining files")
         if sys.platform == "win32":
             gsExecutable = self.txt_gsLocation.text()
         elif sys.platform == "linux":
             gsExecutable = "gs"
+
+        # check if gsExecutable is set
+        if not gsExecutable:
+            self.statusBar.showMessage("Ghostscript location has not been set correctly")
+            return
+
         basicArgs = "-dBATCH -dNOPAUSE -sDEVICE=pdfwrite -dAutoRotatePages=/None -dAutoFilterColorImages=false -dAutoFilterGrayImages=false -dColorImageFilter=/FlateEncode -dGrayImageFilter=/FlateEncode -dDownsampleMonoImages=false -dDownsampleGrayImages=false"
-        outputFile = "-sOutputFile="+'"'+self.txt_saveLocation.text()+'"'
+        
+        # check if save location has been set
+        if not self.txt_saveLocation.text():
+            self.statusBar.showMessage("Please check where you want to save the output file")
+            return
+
+        outputFile = "-sOutputFile=" + '"' + self.txt_saveLocation.text() +'"'
+                
         filesToCombine = ""
         for item in self.listOfFilesToCombine:
             filesToCombine += ' "' + item + '"'
 
         command = gsExecutable + " " + basicArgs + " " + outputFile + " " + filesToCombine
         subprocess.run(command)
+        self.statusBar.showMessage("Output has been saved to " + self.txt_saveLocation.text())
 
 
     def moveItemUp(self):
