@@ -184,21 +184,24 @@ class MyWidget(QtWidgets.QWidget):
         helpMessageBox.setWindowIcon(QtGui.QIcon('icon.png'))
         
         helpMessageBox.setText("Steps to use this software")
-        helpMessageBox.setTextFormat(QtCore.Qt.RichText)
-        helpMessageBox.setInformativeText("Step 1: Download and install ghostscript (3rd party software)\n"+
-        "   Visit https://www.ghostscript.com/download/gsdnld.html \n" +
-        "   Download the version suited to your operating system \n" +
-        "   Install it to an accessible location \n\n" +
-        "Step 2: Set the path to the executable by clicking on the GS location button \n" +
-        "   On Windows, the executable may be located in the bin folder in the installed location - gswin64.exe \n\n" +
-        "Step 3: Choose the pdf files that you want to combine by clicking the Add Files button \n" +
-        "   You can add multiple files at once \n" +
-        "   You can change the order by clicking on a file in the list and using the Move Up or Move Down buttons \n" +
-        "   You can remove a file by selecting it from the list and clicking on the Remove button \n\n" +
-        "Step 4: Choose a location to save the combined file \n" +
-        "   Click on the Save as button choose a file name and location for the combined output file \n\n" +
-        "Step 5: Combine the files \n" +
-        "   Click on the Combine button when ready")
+        helpMessageBox.setTextFormat(QtCore.Qt.MarkdownText)
+        helpMessageBox.setText("# Steps to using this software  \n"+
+        "## Step 1: Download and install ghostscript (3rd party software)  \n" +
+        "Visit https://www.ghostscript.com/download/gsdnld.html  \n" +
+        "Download the version suited to your operating system  \n" +
+        "Install it to an accessible location  \n" +
+        "## Step 2: Set the path to the ghostscript executable  \n" +
+        "Click on the **GS location** button and choose the ghostscript ececutable  \n"+
+        "On Windows, the executable may be located in the bin folder in the installed location - gswin64.exe  \n" +
+        "## Step 3: Choose the pdf files that you want to combine  \n" +
+        "Click the **Add Files** button to choose files  \n" +
+        "You can add multiple files at once  \n" +
+        "You can change the order by clicking on a file in the list and using the **Move Up** or **Move Down** buttons  \n" +
+        "You can remove a file by selecting it from the list and clicking on the **Remove** button  \n" +
+        "## Step 4: Choose a location to save the combined file  \n" +
+        "Click on the **Save as** button choose a file name and location for the combined output file  \n" +
+        "## Step 5: Combine the files  \n" +
+        "Click on the **Combine** button when ready ")
         helpMessageBox.setStyleSheet("QLabel{min-width: 600px;}")  # hacky way to set size
         helpMessageBox.exec_()
 

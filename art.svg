@@ -23,11 +23,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4142136"
-     inkscape:cx="332.4776"
-     inkscape:cy="64.789253"
+     inkscape:zoom="0.85472819"
+     inkscape:cx="108.51318"
+     inkscape:cy="349.86767"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g1558"
      inkscape:document-rotation="0"
      showgrid="false"
      inkscape:window-width="1920"
@@ -606,6 +606,97 @@
              rx="0.32000002"
              ry="0.30000001" />
         </g>
+      </g>
+    </g>
+    <g
+       id="g1543"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-ydpi="96.000008">
+      <g
+         id="g1558"
+         transform="translate(-84.198307,-9.286578)">
+        <rect
+           style="fill:#ececec;fill-opacity:1;stroke-width:3.69273;stroke-linecap:round"
+           id="rect1506"
+           width="67.73333"
+           height="67.73333"
+           x="-4.5357141"
+           y="9.0714283"
+           inkscape:export-xdpi="96.000008"
+           inkscape:export-ydpi="96.000008" />
+        <g
+           id="g1548"
+           transform="translate(17.557313,-4.1159508)"
+           inkscape:export-xdpi="96.000008"
+           inkscape:export-ydpi="96.000008">
+          <path
+             style="fill:none;stroke:#333333;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+             d="M -5.0969788,26.942012 V 67.166076"
+             id="path1508" />
+          <path
+             style="fill:none;stroke:#333333;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+             d="M 11.773638,26.942012 V 67.166076"
+             id="path1510" />
+          <path
+             style="fill:none;stroke:#333333;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+             d="M 28.644254,26.942012 V 67.166076"
+             id="path1512" />
+        </g>
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke:none;stroke-width:4.9068;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="rect1527"
+           width="15.875"
+           height="9.260417"
+           x="21.393452"
+           y="48.75893"
+           rx="2"
+           ry="2"
+           inkscape:export-xdpi="96.000008"
+           inkscape:export-ydpi="96.000008" />
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke:none;stroke-width:4.9068;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="rect1529"
+           width="15.875"
+           height="9.260417"
+           x="4.5960865"
+           y="27.592262"
+           rx="2"
+           ry="2"
+           inkscape:export-xdpi="96.000008"
+           inkscape:export-ydpi="96.000008" />
+        <rect
+           style="fill:#333333;fill-opacity:1;stroke:none;stroke-width:4.9068;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="rect1531"
+           width="15.875"
+           height="9.260417"
+           x="38.492096"
+           y="27.592262"
+           rx="2"
+           ry="2"
+           inkscape:export-xdpi="96.000008"
+           inkscape:export-ydpi="96.000008" />
+        <rect
+           style="fill:#ececec;fill-opacity:1;stroke-width:3.69274;stroke-linecap:round"
+           id="rect1506-8"
+           width="67.73333"
+           height="67.73333"
+           x="-4.5357113"
+           y="82.09642"
+           inkscape:export-xdpi="96.000008"
+           inkscape:export-ydpi="96.000008" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:68.7176px;line-height:1.25;font-family:'Segoe UI';-inkscape-font-specification:'Segoe UI';fill:#333333;fill-opacity:1;stroke:none;stroke-width:1.71793"
+           x="9.53438"
+           y="140.59137"
+           id="text1577"
+           inkscape:export-xdpi="96.000008"
+           inkscape:export-ydpi="96.000008"><tspan
+             sodipodi:role="line"
+             id="tspan1575"
+             x="9.53438"
+             y="140.59137"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';fill:#333333;fill-opacity:1;stroke-width:1.71793">?</tspan></text>
       </g>
     </g>
   </g>
