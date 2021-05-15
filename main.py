@@ -14,25 +14,25 @@ class MyWidget(QtWidgets.QWidget):
         self.setWindowIcon(QtGui.QIcon('icon.png'))
 
         ## create widgets
-        # menu bar
-        self.menuBar = QtWidgets.QMenuBar()
-        
-        # - file menu
-        self.file_menu = QtWidgets.QMenu("File")
-        self.menuBar.addMenu(self.file_menu)
+        # tool bar - our application does not have a menu bar
+        self.toolBar = QtWidgets.QToolBar()
 
         exit_action = QtGui.QAction("Exit", self)
         exit_action.triggered.connect(self.closeApplication)
-        self.file_menu.addAction(exit_action)
+        self.toolBar.addAction(exit_action)
 
-        # - help menu
-        self.help_action = self.menuBar.addAction("Help")
-        self.help_action.triggered.connect(self.displayHelp)
+        config_action = QtGui.QAction("Config", self)
+        config_action.triggered.connect(self.showConfig)
+        self.toolBar.addAction(config_action)
+
+        help_action = QtGui.QAction("Help", self)
+        help_action.triggered.connect(self.showHelp)
+        self.toolBar.addAction(help_action)
 
         # labels
         self.lbl_combineFilesPrompt = QtWidgets.QLabel("Choose files to combine")
         
-        # list that displayes files
+        # list that showes files
         self.listWidget = QtWidgets.QListWidget()
         self.listWidget.setDragDropMode(QtWidgets.QAbstractItemView.InternalMove)
 
@@ -65,7 +65,7 @@ class MyWidget(QtWidgets.QWidget):
 
         ## create layout and add widgets
         self.mainLayout = QtWidgets.QVBoxLayout(self)
-        self.mainLayout.addWidget(self.menuBar)
+        self.mainLayout.addWidget(self.toolBar)
 
         # a grid layout that is nested within the main layout
         self.gridLayout = QtWidgets.QGridLayout(self)
@@ -92,7 +92,7 @@ class MyWidget(QtWidgets.QWidget):
         self.shortcut_closeApp.activated.connect(self.closeApplication)
 
         self.shortcut_help = QtGui.QShortcut(QtGui.QKeySequence('F1'), self)
-        self.shortcut_help.activated.connect(self.displayHelp)
+        self.shortcut_help.activated.connect(self.showHelp)
 
         ## set widget size
         self.setFixedSize(700,300)
@@ -177,7 +177,7 @@ class MyWidget(QtWidgets.QWidget):
         sys.exit()  # is this the correct way to do it?
 
     
-    def displayHelp(self):
+    def showHelp(self):
         helpMessageBox = QtWidgets.QMessageBox()
         helpMessageBox.setWindowTitle("Help")
         helpMessageBox.setWindowIcon(QtGui.QIcon('icon.png'))
@@ -201,11 +201,9 @@ class MyWidget(QtWidgets.QWidget):
         helpMessageBox.setStyleSheet("QLabel{min-width: 600px;}")  # hacky way to set size
         helpMessageBox.exec_()
 
-        #QtWidgets.QMessageBox.information(self, "Help",
-        #    "The <b>Application</b> example demonstrates how to "
-        #       "write modern GUI applications using Qt, with a menu bar, "
-        #       "toolbars, and a status bar.")
 
+    def showConfig(self):
+        pass
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
