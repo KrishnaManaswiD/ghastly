@@ -16,17 +16,18 @@ class MyWidget(QtWidgets.QWidget):
         ## create widgets
         # tool bar - our application does not have a menu bar
         self.toolBar = QtWidgets.QToolBar()
-
-        exit_action = QtGui.QAction("Exit", self)
-        exit_action.triggered.connect(self.closeApplication)
-        self.toolBar.addAction(exit_action)
+        self.toolBar.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
 
         config_action = QtGui.QAction("Config", self)
         config_action.triggered.connect(self.showConfig)
+        config_action.setIcon(QtGui.QIcon('icon_config.png'))
+        config_action.setIconText("Config")
         self.toolBar.addAction(config_action)
 
         help_action = QtGui.QAction("Help", self)
         help_action.triggered.connect(self.showHelp)
+        help_action.setIcon(QtGui.QIcon('icon_help.png'))
+        help_action.setIconText("Help")
         self.toolBar.addAction(help_action)
 
         # labels
