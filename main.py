@@ -2,7 +2,7 @@ import sys
 import subprocess
 from PySide6 import QtCore, QtWidgets, QtGui
 
-class MyWidget(QtWidgets.QWidget):
+class GhastlyWidget(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
 
@@ -90,13 +90,15 @@ class MyWidget(QtWidgets.QWidget):
         self.shortcut_open.activated.connect(self.openFile)
 
         self.shortcut_closeApp = QtGui.QShortcut(QtGui.QKeySequence('Alt+F4'), self)
-        self.shortcut_closeApp.activated.connect(self.closeApplication)
+        self.shortcut_closeApp.activated.connect(self.closeEvent)
 
         self.shortcut_help = QtGui.QShortcut(QtGui.QKeySequence('F1'), self)
         self.shortcut_help.activated.connect(self.showHelp)
 
         ## set widget size
         self.setFixedSize(700,300)
+
+        self.readSettings()
         
 
     def openFile(self):
@@ -174,8 +176,10 @@ class MyWidget(QtWidgets.QWidget):
             self.listWidget.addItem(item)
 
 
-    def closeApplication(self):
-        sys.exit()  # is this the correct way to do it?
+    # this is called when the application is closed
+    def closeEvent(self, event):
+        self.writeSettings()
+        event.accept()
 
     
     def showHelp(self):
@@ -185,22 +189,22 @@ class MyWidget(QtWidgets.QWidget):
         
         helpMessageBox.setText("Steps to use this software")
         helpMessageBox.setTextFormat(QtCore.Qt.MarkdownText)
-        helpMessageBox.setText("# Steps to using this software  \n"+
-        "## Step 1: Download and install ghostscript (3rd party software)  \n" +
+        helpMessageBox.setText("## Steps to using this software  \n" +
+        "### Step 1: Download and install ghostscript (3rd party software)  \n" +
         "Visit https://www.ghostscript.com/download/gsdnld.html  \n" +
         "Download the version suited to your operating system  \n" +
         "Install it to an accessible location  \n" +
-        "## Step 2: Set the path to the ghostscript executable  \n" +
-        "Click on the **GS location** button and choose the ghostscript ececutable  \n"+
+        "### Step 2: Set the path to the ghostscript executable  \n" +
+        "Click on the **GS location** button and choose the ghostscript ececutable  \n" +
         "On Windows, the executable may be located in the bin folder in the installed location - gswin64.exe  \n" +
-        "## Step 3: Choose the pdf files that you want to combine  \n" +
+        "### Step 3: Choose the pdf files that you want to combine  \n" +
         "Click the **Add Files** button to choose files  \n" +
         "You can add multiple files at once  \n" +
         "You can change the order by clicking on a file in the list and using the **Move Up** or **Move Down** buttons  \n" +
         "You can remove a file by selecting it from the list and clicking on the **Remove** button  \n" +
-        "## Step 4: Choose a location to save the combined file  \n" +
+        "### Step 4: Choose a location to save the combined file  \n" +
         "Click on the **Save as** button choose a file name and location for the combined output file  \n" +
-        "## Step 5: Combine the files  \n" +
+        "### Step 5: Combine the files  \n" +
         "Click on the **Combine** button when ready ")
         helpMessageBox.setStyleSheet("QLabel{min-width: 600px;}")  # hacky way to set size
         helpMessageBox.exec_()
@@ -209,10 +213,21 @@ class MyWidget(QtWidgets.QWidget):
     def showConfig(self):
         pass
 
+
+    def writeSettings(self):
+        settings = QtCore.QSettings("TandM", "Ghastly")
+        settings.setValue("monkey", "10")
+        settings.sync()
+
+    def readSettings(self):
+        settings = QtCore.QSettings("TandM", "Ghastly")
+        self.statusBar.showMessage(settings.value("monkey", "foo"))
+
+
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
 
-    widget = MyWidget()
-    widget.show()
+    ghastly = GhastlyWidget()
+    ghastly.show()
 
     sys.exit(app.exec_())
