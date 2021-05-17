@@ -9,6 +9,7 @@ class GhastlyWidget(QtWidgets.QWidget):
         ## window settings
         self.setWindowTitle("Ghastly")
         self.setWindowIcon(QtGui.QIcon('icon.png'))
+        self.setAcceptDrops(True)  # allows dragging and dropping files into the application
 
         ## create widgets
         # tool bar - our application does not have a menu bar
@@ -32,7 +33,7 @@ class GhastlyWidget(QtWidgets.QWidget):
         
         # list that showes files
         self.listWidget = QtWidgets.QListWidget()
-        self.listWidget.setDragDropMode(QtWidgets.QAbstractItemView.InternalMove)
+        self.listWidget.setDragDropMode(QtWidgets.QAbstractItemView.InternalMove)  # allows rearanging list by dragging items
 
         # buttons
         self.btn_moveUp = QtWidgets.QPushButton("Move Up")
@@ -166,12 +167,6 @@ class GhastlyWidget(QtWidgets.QWidget):
         subprocess.run(command)
         self.statusBar.showMessage("Output has been saved to " + self.txt_saveLocation.text())
 
-
-    # this is called when the application is closed
-    def closeEvent(self, event):
-        self.writeSettings()
-        event.accept()
-
     
     def showHelp(self):
         helpMessageBox = QtWidgets.QMessageBox()
@@ -215,6 +210,43 @@ class GhastlyWidget(QtWidgets.QWidget):
         settings = QtCore.QSettings("TandM", "Ghastly")
         self.statusBar.showMessage(settings.value("gsLocation"))
 
+
+    def dragEnterEvent(self, event: QtGui.QDragEnterEvent):
+        #if event.mimeData().hasFormat("application/pdf"):
+        if event.mimeData().hasUrls():
+            event.accept()
+        else:
+            event.ignore()
+
+
+    def dragMoveEvent(self, event: QtGui.QDragMoveEvent):
+        #if event.mimeData().hasFormat("application/pdf"):
+        if event.mimeData().hasUrls():
+            event.setDropAction(QtCore.Qt.CopyAction)
+            event.accept()
+        else:
+            event.ignore()
+
+
+    def dropEvent(self, event: QtGui.QDropEvent):
+        #if event.mimeData().hasFormat("application/pdf"):
+        if event.mimeData().hasUrls():
+            event.setDropAction(QtCore.Qt.CopyAction)
+            event.accept()
+        else:
+            event.ignore()
+
+        for url in event.mimeData().urls():
+            if url.isLocalFile():
+                # check if file is pdf
+                self.listWidget.addItem(url.toLocalFile())
+        
+
+
+    # this is called when the application is closed
+    def closeEvent(self, event):
+        self.writeSettings()
+        event.accept()
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication([])
