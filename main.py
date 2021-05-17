@@ -6,9 +6,6 @@ class GhastlyWidget(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
 
-        ## some variables
-        self.listOfFilesToCombine = []
-
         ## window settings
         self.setWindowTitle("Ghastly")
         self.setWindowIcon(QtGui.QIcon('icon.png'))
@@ -103,8 +100,7 @@ class GhastlyWidget(QtWidgets.QWidget):
 
     def openFile(self):
         files, filtr = QtWidgets.QFileDialog.getOpenFileNames(self, "Open Files", QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.DocumentsLocation), "*.pdf")
-        self.listOfFilesToCombine.extend(files)
-        self.updateList()
+        self.listWidget.addItems(files)
 
 
     def selectSaveLocation(self):
@@ -116,6 +112,29 @@ class GhastlyWidget(QtWidgets.QWidget):
         gsLocation = QtWidgets.QFileDialog.getOpenFileName(self, "Browse for ghost script", QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.HomeLocation), "*.exe")
         self.txt_gsLocation.setText(gsLocation[0])
         # C:/Program Files/gs/gs9.53.3/bin/
+
+
+    def moveItemUp(self):
+        current = self.listWidget.currentItem()
+        currentSelectedIndex = self.listWidget.row(current)
+        if currentSelectedIndex > 0:
+            self.listWidget.insertItem(currentSelectedIndex-1, self.listWidget.takeItem(currentSelectedIndex))
+            self.listWidget.setCurrentRow(currentSelectedIndex-1)
+
+
+    def moveItemDown(self):
+        current = self.listWidget.currentItem()
+        currentSelectedIndex = self.listWidget.row(current)
+        if currentSelectedIndex < self.listWidget.count():
+            self.listWidget.insertItem(currentSelectedIndex+1, self.listWidget.takeItem(currentSelectedIndex))
+            self.listWidget.setCurrentRow(currentSelectedIndex+1)
+            if self.listWidget.currentRow() == - 1:  # if item has moved to the end, incrementing index makes it -1. revert it to count-1
+                self.listWidget.setCurrentRow(self.listWidget.count() - 1)                 
+
+    
+    def removeItem(self):
+        current = self.listWidget.currentItem()
+        self.listWidget.takeItem(self.listWidget.row(current))
 
 
     def combineFiles(self):
@@ -140,40 +159,12 @@ class GhastlyWidget(QtWidgets.QWidget):
         outputFile = "-sOutputFile=" + '"' + self.txt_saveLocation.text() +'"'
                 
         filesToCombine = ""
-        for item in self.listOfFilesToCombine:
-            filesToCombine += ' "' + item + '"'
+        for index in range(self.listWidget.count()):
+            filesToCombine += ' "' + self.listWidget.item(index).text() + '"'
 
         command = gsExecutable + " " + basicArgs + " " + outputFile + " " + filesToCombine
         subprocess.run(command)
         self.statusBar.showMessage("Output has been saved to " + self.txt_saveLocation.text())
-
-
-    def moveItemUp(self):
-        current = self.listWidget.currentItem()
-        currentSelectedIndex = self.listWidget.row(current)
-        if currentSelectedIndex > 0:
-            self.listOfFilesToCombine.insert(currentSelectedIndex-1, self.listOfFilesToCombine.pop(currentSelectedIndex))
-            self.updateList()
-
-
-    def moveItemDown(self):
-        current = self.listWidget.currentItem()
-        currentSelectedIndex = self.listWidget.row(current)
-        if currentSelectedIndex < len(self.listOfFilesToCombine)-1:
-            self.listOfFilesToCombine.insert(currentSelectedIndex+1, self.listOfFilesToCombine.pop(currentSelectedIndex))
-            self.updateList()
-
-    
-    def removeItem(self):
-        current = self.listWidget.currentItem()
-        self.listOfFilesToCombine.pop(self.listWidget.row(current))
-        self.updateList()
-
-
-    def updateList(self):
-        self.listWidget.clear()
-        for item in self.listOfFilesToCombine:
-            self.listWidget.addItem(item)
 
 
     # this is called when the application is closed
@@ -216,12 +207,13 @@ class GhastlyWidget(QtWidgets.QWidget):
 
     def writeSettings(self):
         settings = QtCore.QSettings("TandM", "Ghastly")
-        settings.setValue("monkey", "10")
+        settings.setValue("gsLocation", "10")
         settings.sync()
+
 
     def readSettings(self):
         settings = QtCore.QSettings("TandM", "Ghastly")
-        self.statusBar.showMessage(settings.value("monkey", "foo"))
+        self.statusBar.showMessage(settings.value("gsLocation"))
 
 
 if __name__ == "__main__":
