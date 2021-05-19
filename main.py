@@ -1,3 +1,4 @@
+from settingsDialog import settingsDialog
 import sys
 import subprocess
 from PySide6 import QtCore, QtWidgets, QtGui
@@ -96,6 +97,7 @@ class GhastlyWidget(QtWidgets.QWidget):
         ## set widget size
         self.setFixedSize(700,300)
 
+        ## read settings from saved location
         self.readSettings()
         
 
@@ -110,7 +112,7 @@ class GhastlyWidget(QtWidgets.QWidget):
 
 
     def selectGSLocation(self):
-        gsLocation = QtWidgets.QFileDialog.getOpenFileName(self, "Browse for ghost script", QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.HomeLocation), "*.exe")
+        gsLocation = QtWidgets.QFileDialog.getOpenFileName(self, "Browse for ghostscript", QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.HomeLocation), "*.exe")
         self.txt_gsLocation.setText(gsLocation[0])
         # C:/Program Files/gs/gs9.53.3/bin/
 
@@ -197,6 +199,8 @@ class GhastlyWidget(QtWidgets.QWidget):
 
 
     def showConfig(self):
+        configDialog = settingsDialog(self)
+        configDialog.exec_()
         pass
 
 
@@ -244,7 +248,6 @@ class GhastlyWidget(QtWidgets.QWidget):
                 if suffix == "pdf":
                     self.listWidget.addItem(fileName)
         
-
 
     # this is called when the application is closed
     def closeEvent(self, event):
