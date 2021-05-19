@@ -239,7 +239,10 @@ class GhastlyWidget(QtWidgets.QWidget):
         for url in event.mimeData().urls():
             if url.isLocalFile():
                 # check if file is pdf
-                self.listWidget.addItem(url.toLocalFile())
+                fileName = url.toLocalFile()
+                suffix = QtCore.QFileInfo(fileName).suffix()
+                if suffix == "pdf":
+                    self.listWidget.addItem(fileName)
         
 
 
