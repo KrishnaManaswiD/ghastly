@@ -14,40 +14,40 @@ class GhastlyWidget(QtWidgets.QWidget):
 
         ## create widgets
         # tool bar - our application does not have a menu bar
-        self.toolBar = QtWidgets.QToolBar()
-        self.toolBar.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
+        toolBar = QtWidgets.QToolBar()
+        toolBar.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
 
         config_action = QtGui.QAction("Config", self)
         config_action.triggered.connect(self.showConfig)
         config_action.setIcon(QtGui.QIcon('icon_config.png'))
         config_action.setIconText("Config")
-        self.toolBar.addAction(config_action)
+        toolBar.addAction(config_action)
 
         help_action = QtGui.QAction("Help", self)
         help_action.triggered.connect(self.showHelp)
         help_action.setIcon(QtGui.QIcon('icon_help.png'))
         help_action.setIconText("Help")
-        self.toolBar.addAction(help_action)
+        toolBar.addAction(help_action)
 
         # labels
-        self.lbl_combineFilesPrompt = QtWidgets.QLabel("Choose files to combine")
+        lbl_combineFilesPrompt = QtWidgets.QLabel("Choose files to combine")
         
         # list that showes files
         self.listWidget = QtWidgets.QListWidget()
         self.listWidget.setDragDropMode(QtWidgets.QAbstractItemView.InternalMove)  # allows rearanging list by dragging items
 
         # buttons
-        self.btn_moveUp = QtWidgets.QPushButton("Move Up")
-        self.btn_moveDown = QtWidgets.QPushButton("Move Down")
-        self.btn_add = QtWidgets.QPushButton("Add Files")
-        self.btn_remove = QtWidgets.QPushButton("Remove")
-        self.btn_saveAs = QtWidgets.QPushButton("Save as")
-        self.btn_combine = QtWidgets.QPushButton("Combine")
-        self.btn_gsLocation = QtWidgets.QPushButton("GS location")
+        btn_moveUp = QtWidgets.QPushButton("Move Up")
+        btn_moveDown = QtWidgets.QPushButton("Move Down")
+        btn_add = QtWidgets.QPushButton("Add Files")
+        btn_remove = QtWidgets.QPushButton("Remove")
+        btn_saveAs = QtWidgets.QPushButton("Save as")
+        btn_combine = QtWidgets.QPushButton("Combine")
+        btn_gsLocation = QtWidgets.QPushButton("GS location")
         
         # editable texts
-        self.txt_gsLocation = QtWidgets.QLineEdit("")
-        self.txt_saveLocation = QtWidgets.QLineEdit("")
+        txt_gsLocation = QtWidgets.QLineEdit("")
+        txt_saveLocation = QtWidgets.QLineEdit("")
 
         # status bar
         self.statusBar = QtWidgets.QStatusBar()
@@ -55,34 +55,34 @@ class GhastlyWidget(QtWidgets.QWidget):
         self.statusBar.setSizeGripEnabled(False)
         
         ## add key bindings to buttons
-        self.btn_add.clicked.connect(self.openFile)
-        self.btn_saveAs.clicked.connect(self.selectSaveLocation)
-        self.btn_remove.clicked.connect(self.removeItem)
-        self.btn_moveUp.clicked.connect(self.moveItemUp)
-        self.btn_moveDown.clicked.connect(self.moveItemDown)
-        self.btn_gsLocation.clicked.connect(self.selectGSLocation)
-        self.btn_combine.clicked.connect(self.combineFiles)
+        btn_add.clicked.connect(self.openFile)
+        btn_saveAs.clicked.connect(self.selectSaveLocation)
+        btn_remove.clicked.connect(self.removeItem)
+        btn_moveUp.clicked.connect(self.moveItemUp)
+        btn_moveDown.clicked.connect(self.moveItemDown)
+        btn_gsLocation.clicked.connect(self.selectGSLocation)
+        btn_combine.clicked.connect(self.combineFiles)
 
         ## create layout and add widgets
-        self.mainLayout = QtWidgets.QVBoxLayout(self)
-        self.mainLayout.addWidget(self.toolBar)
+        mainLayout = QtWidgets.QVBoxLayout(self)
+        mainLayout.addWidget(toolBar)
 
         # a grid layout that is nested within the main layout
-        self.gridLayout = QtWidgets.QGridLayout(self)
-        self.gridLayout.addWidget(self.lbl_combineFilesPrompt, 0, 0)
-        self.gridLayout.addWidget(self.listWidget, 1, 0, 4, 2)
-        self.gridLayout.addWidget(self.btn_add, 1, 2)
-        self.gridLayout.addWidget(self.btn_remove, 2, 2)
-        self.gridLayout.addWidget(self.btn_moveUp, 3, 2)
-        self.gridLayout.addWidget(self.btn_moveDown, 4, 2)
-        self.gridLayout.addWidget(self.btn_gsLocation, 5, 0)
-        self.gridLayout.addWidget(self.txt_gsLocation, 5, 1)
-        self.gridLayout.addWidget(self.btn_saveAs, 6, 0)
-        self.gridLayout.addWidget(self.txt_saveLocation, 6, 1)
-        self.gridLayout.addWidget(self.btn_combine, 6, 2)
-        self.mainLayout.addLayout(self.gridLayout)
+        gridLayout = QtWidgets.QGridLayout()
+        gridLayout.addWidget(lbl_combineFilesPrompt, 0, 0)
+        gridLayout.addWidget(self.listWidget, 1, 0, 4, 2)
+        gridLayout.addWidget(btn_add, 1, 2)
+        gridLayout.addWidget(btn_remove, 2, 2)
+        gridLayout.addWidget(btn_moveUp, 3, 2)
+        gridLayout.addWidget(btn_moveDown, 4, 2)
+        gridLayout.addWidget(btn_gsLocation, 5, 0)
+        gridLayout.addWidget(txt_gsLocation, 5, 1)
+        gridLayout.addWidget(btn_saveAs, 6, 0)
+        gridLayout.addWidget(txt_saveLocation, 6, 1)
+        gridLayout.addWidget(btn_combine, 6, 2)
+        mainLayout.addLayout(gridLayout)
 
-        self.mainLayout.addWidget(self.statusBar)
+        mainLayout.addWidget(self.statusBar)
 
         ## Keyboard Shortcuts
         self.shortcut_open = QtGui.QShortcut(QtGui.QKeySequence('Ctrl+O'), self)
