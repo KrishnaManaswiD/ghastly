@@ -10,15 +10,11 @@ class settingsDialog(QtWidgets.QDialog):
         self.setWindowTitle("Configuration")
         self.setWindowIcon(QtGui.QIcon('icon.png'))
 
-        QBtn = QtWidgets.QDialogButtonBox.Save | QtWidgets.QDialogButtonBox.Cancel
-
-        
-
         # labels
         lbl_GSlocation = QtWidgets.QLabel("ghostscript location:")
 
         # editable text
-        txt_gsLocation = QtWidgets.QLineEdit("")
+        self.txt_gsLocation = QtWidgets.QLineEdit("")
 
         # buttons
         btn_gsLocation = QtWidgets.QPushButton("Browse")
@@ -26,22 +22,27 @@ class settingsDialog(QtWidgets.QDialog):
         # key bindings
         btn_gsLocation.clicked.connect(self.selectGSLocation)
 
+        # check box
+        self.chk_shouldShowConfigAtLaunch = QtWidgets.QCheckBox("Show settings at launch")
+        self.chk_shouldShowConfigAtLaunch.setChecked(True)
+
         # button box
-        self.buttonBox = QtWidgets.QDialogButtonBox(QBtn)
-        self.buttonBox.accepted.connect(self.accept)
-        self.buttonBox.rejected.connect(self.reject)
+        QBtn = QtWidgets.QDialogButtonBox.Save | QtWidgets.QDialogButtonBox.Cancel
+        buttonBox = QtWidgets.QDialogButtonBox(QBtn)
+        buttonBox.accepted.connect(self.accept)
+        buttonBox.rejected.connect(self.reject)
 
         # create layout and add elements
-        self.layout = QtWidgets.QGridLayout(self)
+        layout = QtWidgets.QGridLayout(self)
         
-        self.layout.addWidget(lbl_GSlocation,0,0)
-        self.layout.addWidget(txt_gsLocation,0,1)
-        self.layout.addWidget(btn_gsLocation,0,2)
-        self.layout.addWidget(self.buttonBox)
-        self.setLayout(self.layout)
+        layout.addWidget(lbl_GSlocation,0,0)
+        layout.addWidget(self.txt_gsLocation,0,1)
+        layout.addWidget(btn_gsLocation,0,2)
+        layout.addWidget(self.chk_shouldShowConfigAtLaunch,1,0)
+        layout.addWidget(buttonBox,2,1)
 
         ## set widget size
-        self.setFixedSize(600,400)
+        self.setFixedSize(500,100)
 
         self.readSettings()
 
@@ -53,15 +54,28 @@ class settingsDialog(QtWidgets.QDialog):
 
     def writeSettings(self):
         settings = QtCore.QSettings("TandM", "Ghastly")
-        settings.setValue("gsLocation", "10")
+        settings.setValue("gsLocation", self.txt_gsLocation.text())
+        settings.setValue("shouldShowConfigAtLaunch", self.chk_shouldShowConfigAtLaunch.isChecked())
         settings.sync()
 
 
     def readSettings(self):
         settings = QtCore.QSettings("TandM", "Ghastly")
+        shouldShowConfigAtLaunch = settings.value("shouldShowConfigAtLaunch")
+        if shouldShowConfigAtLaunch == 'true':
+            self.chk_shouldShowConfigAtLaunch.setChecked(True)
+        elif shouldShowConfigAtLaunch == 'false':
+            self.chk_shouldShowConfigAtLaunch.setChecked(False)
+        
+        gslocation = settings.value("gslocation")
+        if gslocation:
+            self.txt_gsLocation.setText(gslocation)
 
+
+    def accept(self):
+        self.writeSettings()
+        return super().accept()
 
     # this is called when the application is closed
     def closeEvent(self, event):
-        self.writeSettings()
         event.accept()

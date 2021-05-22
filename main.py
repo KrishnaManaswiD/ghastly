@@ -12,6 +12,10 @@ class GhastlyWidget(QtWidgets.QWidget):
         self.setWindowIcon(QtGui.QIcon('icon.png'))
         self.setAcceptDrops(True)  # allows dragging and dropping files into the application
 
+        ## variables
+        self.shouldShowConfigAtLaunch = False
+        self.gsLocation = ""
+
         ## create widgets
         # tool bar - our application does not have a menu bar
         toolBar = QtWidgets.QToolBar()
@@ -43,11 +47,11 @@ class GhastlyWidget(QtWidgets.QWidget):
         btn_remove = QtWidgets.QPushButton("Remove")
         btn_saveAs = QtWidgets.QPushButton("Save as")
         btn_combine = QtWidgets.QPushButton("Combine")
-        btn_gsLocation = QtWidgets.QPushButton("GS location")
+        #btn_gsLocation = QtWidgets.QPushButton("GS location")
         
         # editable texts
-        txt_gsLocation = QtWidgets.QLineEdit("")
-        txt_saveLocation = QtWidgets.QLineEdit("")
+        #txt_gsLocation = QtWidgets.QLineEdit("")
+        self.txt_saveLocation = QtWidgets.QLineEdit("")
 
         # status bar
         self.statusBar = QtWidgets.QStatusBar()
@@ -60,7 +64,7 @@ class GhastlyWidget(QtWidgets.QWidget):
         btn_remove.clicked.connect(self.removeItem)
         btn_moveUp.clicked.connect(self.moveItemUp)
         btn_moveDown.clicked.connect(self.moveItemDown)
-        btn_gsLocation.clicked.connect(self.selectGSLocation)
+        #btn_gsLocation.clicked.connect(self.selectGSLocation)
         btn_combine.clicked.connect(self.combineFiles)
 
         ## create layout and add widgets
@@ -75,10 +79,10 @@ class GhastlyWidget(QtWidgets.QWidget):
         gridLayout.addWidget(btn_remove, 2, 2)
         gridLayout.addWidget(btn_moveUp, 3, 2)
         gridLayout.addWidget(btn_moveDown, 4, 2)
-        gridLayout.addWidget(btn_gsLocation, 5, 0)
-        gridLayout.addWidget(txt_gsLocation, 5, 1)
+        #gridLayout.addWidget(btn_gsLocation, 5, 0)
+        #gridLayout.addWidget(txt_gsLocation, 5, 1)
         gridLayout.addWidget(btn_saveAs, 6, 0)
-        gridLayout.addWidget(txt_saveLocation, 6, 1)
+        gridLayout.addWidget(self.txt_saveLocation, 6, 1)
         gridLayout.addWidget(btn_combine, 6, 2)
         mainLayout.addLayout(gridLayout)
 
@@ -99,6 +103,11 @@ class GhastlyWidget(QtWidgets.QWidget):
 
         ## read settings from saved location
         self.readSettings()
+        if self.shouldShowConfigAtLaunch == 'true':
+            self.showConfig()
+
+        #if self.gsLocation:
+        #    txt_gsLocation.setText(self.gsLocation)        
         
 
     def openFile(self):
@@ -142,8 +151,9 @@ class GhastlyWidget(QtWidgets.QWidget):
 
     def combineFiles(self):
         self.statusBar.showMessage("Combining files")
+        self.readSettings()
         if sys.platform == "win32":
-            gsExecutable = self.txt_gsLocation.text()
+            gsExecutable = self.gsLocation
         elif sys.platform == "linux":
             gsExecutable = "gs"
 
@@ -206,13 +216,13 @@ class GhastlyWidget(QtWidgets.QWidget):
 
     def writeSettings(self):
         settings = QtCore.QSettings("TandM", "Ghastly")
-        settings.setValue("gsLocation", "10")
         settings.sync()
 
 
     def readSettings(self):
         settings = QtCore.QSettings("TandM", "Ghastly")
-        self.statusBar.showMessage(settings.value("gsLocation"))
+        self.shouldShowConfigAtLaunch = settings.value("shouldShowConfigAtLaunch")
+        self.gsLocation = settings.value("gslocation")
 
 
     def dragEnterEvent(self, event: QtGui.QDragEnterEvent):
