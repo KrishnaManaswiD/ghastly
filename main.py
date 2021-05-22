@@ -22,16 +22,22 @@ class GhastlyWidget(QtWidgets.QWidget):
         toolBar.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
 
         config_action = QtGui.QAction("Config", self)
-        config_action.triggered.connect(self.showConfig)
+        config_action.triggered.connect(self.showConfigDialog)
         config_action.setIcon(QtGui.QIcon('icon_config.png'))
         config_action.setIconText("Config")
         toolBar.addAction(config_action)
 
         help_action = QtGui.QAction("Help", self)
-        help_action.triggered.connect(self.showHelp)
+        help_action.triggered.connect(self.showHelpDialog)
         help_action.setIcon(QtGui.QIcon('icon_help.png'))
         help_action.setIconText("Help")
         toolBar.addAction(help_action)
+
+        about_action = QtGui.QAction("About", self)
+        about_action.triggered.connect(self.showAboutDialog)
+        about_action.setIcon(QtGui.QIcon('icon_about.png'))
+        about_action.setIconText("About")
+        toolBar.addAction(about_action)
 
         # labels
         lbl_combineFilesPrompt = QtWidgets.QLabel("Choose files to combine")
@@ -96,7 +102,7 @@ class GhastlyWidget(QtWidgets.QWidget):
         self.shortcut_closeApp.activated.connect(self.closeEvent)
 
         self.shortcut_help = QtGui.QShortcut(QtGui.QKeySequence('F1'), self)
-        self.shortcut_help.activated.connect(self.showHelp)
+        self.shortcut_help.activated.connect(self.showHelpDialog)
 
         ## set widget size
         self.setFixedSize(700,300)
@@ -104,7 +110,7 @@ class GhastlyWidget(QtWidgets.QWidget):
         ## read settings from saved location
         self.readSettings()
         if self.shouldShowConfigAtLaunch == 'true':
-            self.showConfig()
+            self.showConfigDialog()
 
         #if self.gsLocation:
         #    txt_gsLocation.setText(self.gsLocation)        
@@ -180,7 +186,7 @@ class GhastlyWidget(QtWidgets.QWidget):
         self.statusBar.showMessage("Output has been saved to " + self.txt_saveLocation.text())
 
     
-    def showHelp(self):
+    def showHelpDialog(self):
         helpMessageBox = QtWidgets.QMessageBox()
         helpMessageBox.setWindowTitle("Help")
         helpMessageBox.setWindowIcon(QtGui.QIcon('icon.png'))
@@ -193,7 +199,7 @@ class GhastlyWidget(QtWidgets.QWidget):
         "Download the version suited to your operating system  \n" +
         "Install it to an accessible location  \n" +
         "### Step 2: Set the path to the ghostscript executable  \n" +
-        "Click on the **GS location** button and choose the ghostscript ececutable  \n" +
+        "Click on the **Config** button and set the path to the ghostscript ececutable  \n" +
         "On Windows, the executable may be located in the bin folder in the installed location - gswin64.exe  \n" +
         "### Step 3: Choose the pdf files that you want to combine  \n" +
         "Click the **Add Files** button to choose files  \n" +
@@ -208,7 +214,21 @@ class GhastlyWidget(QtWidgets.QWidget):
         helpMessageBox.exec_()
 
 
-    def showConfig(self):
+    def showAboutDialog(self):
+        aboutMessageBox = QtWidgets.QMessageBox()
+        aboutMessageBox.setWindowTitle("About Ghastly")
+        aboutMessageBox.setWindowIcon(QtGui.QIcon('icon.png'))
+        aboutMessageBox.setTextFormat(QtCore.Qt.MarkdownText)
+
+        aboutMessageBox.setText("## Ghastly is a software to manipulate pdf files.  \n" +
+        "You are using version 1.1  \n" +
+        "Copyright 2021 Sundara Tejaswi Digumarti and Krishna Manaswi Digumarti. All rights reserved.\n")
+
+        aboutMessageBox.setStyleSheet("QLabel{min-width: 600px;}")  # hacky way to set size
+        aboutMessageBox.exec_()
+
+
+    def showConfigDialog(self):
         configDialog = settingsDialog(self)
         configDialog.exec_()
         pass
