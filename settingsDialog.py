@@ -8,7 +8,7 @@ class settingsDialog(QtWidgets.QDialog):
 
         ## window settings
         self.setWindowTitle("Configuration")
-        self.setWindowIcon(QtGui.QIcon('icon.png'))
+        self.setWindowIcon(QtGui.QIcon('icons/icon.png'))
 
         # labels
         lbl_GSlocation = QtWidgets.QLabel("ghostscript location:")

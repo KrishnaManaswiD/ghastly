@@ -9,7 +9,7 @@ class GhastlyWidget(QtWidgets.QWidget):
 
         ## window settings
         self.setWindowTitle("Ghastly")
-        self.setWindowIcon(QtGui.QIcon('icon.png'))
+        self.setWindowIcon(QtGui.QIcon('icons/icon.png'))
         self.setAcceptDrops(True)  # allows dragging and dropping files into the application
 
         ## variables
@@ -23,19 +23,19 @@ class GhastlyWidget(QtWidgets.QWidget):
 
         config_action = QtGui.QAction("Config", self)
         config_action.triggered.connect(self.showConfigDialog)
-        config_action.setIcon(QtGui.QIcon('icon_config.png'))
+        config_action.setIcon(QtGui.QIcon('icons/icon_config.png'))
         config_action.setIconText("Config")
         toolBar.addAction(config_action)
 
         help_action = QtGui.QAction("Help", self)
         help_action.triggered.connect(self.showHelpDialog)
-        help_action.setIcon(QtGui.QIcon('icon_help.png'))
+        help_action.setIcon(QtGui.QIcon('icons/icon_help.png'))
         help_action.setIconText("Help")
         toolBar.addAction(help_action)
 
         about_action = QtGui.QAction("About", self)
         about_action.triggered.connect(self.showAboutDialog)
-        about_action.setIcon(QtGui.QIcon('icon_about.png'))
+        about_action.setIcon(QtGui.QIcon('icons/icon_about.png'))
         about_action.setIconText("About")
         toolBar.addAction(about_action)
 
@@ -189,7 +189,7 @@ class GhastlyWidget(QtWidgets.QWidget):
     def showHelpDialog(self):
         helpMessageBox = QtWidgets.QMessageBox()
         helpMessageBox.setWindowTitle("Help")
-        helpMessageBox.setWindowIcon(QtGui.QIcon('icon.png'))
+        helpMessageBox.setWindowIcon(QtGui.QIcon('icons/icon.png'))
         
         helpMessageBox.setText("Steps to use this software")
         helpMessageBox.setTextFormat(QtCore.Qt.MarkdownText)
@@ -217,7 +217,7 @@ class GhastlyWidget(QtWidgets.QWidget):
     def showAboutDialog(self):
         aboutMessageBox = QtWidgets.QMessageBox()
         aboutMessageBox.setWindowTitle("About Ghastly")
-        aboutMessageBox.setWindowIcon(QtGui.QIcon('icon.png'))
+        aboutMessageBox.setWindowIcon(QtGui.QIcon('icons/icon.png'))
         aboutMessageBox.setTextFormat(QtCore.Qt.MarkdownText)
 
         aboutMessageBox.setText("## Ghastly is a software to manipulate pdf files.  \n" +
