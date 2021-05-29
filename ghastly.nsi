@@ -126,9 +126,8 @@ ${EndIf}
 ; ==================================================
 ; --- INSTALLER SECTIONS ---
 ; Define the components of the installation process. 
-; The installation package must have at least one component.
-; If you have multiple components, you need to define multiple.
-; Components can define component names and perform installation priorities.
+; The installation package must have at least one section.
+; Sections are executed in the instfiles page in the order in which they are defined
 ; Commands written in components are executed sequentially during installation.
 
 Section "Install"
@@ -181,13 +180,14 @@ SectionEnd
 
 
 ; ==================================================
-; --- INSTALLER FUNCTIONS ---.
+; --- INSTALLER FUNCTIONS ---
 ; NSIS scripting convention is that functions must be written at the end of the script.
 ; The . at the beginning indicates a built-in call-back function that is executed at a specific time
 
 ; This function is executed when the package starts. 
 Function .onInit
-
+  setShellVarContext all
+	!insertmacro VerifyUserIsAdmin
 FunctionEnd
 
 Function OnPageWelcomeLeave
@@ -222,7 +222,6 @@ section "uninstall"
   delete $INSTDIR\PySide6\*.*
   delete $INSTDIR\shiboken6\*.*
   
-
 	; Always delete uninstaller as the last action
 	delete $INSTDIR\uninstall_${APPLICATION_NAME}.exe
  
@@ -236,6 +235,10 @@ section "uninstall"
 	; Remove uninstaller information from the registry
 	DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPLICATION_NAME}"
 sectionEnd
+
+
+; ==================================================
+; --- UNINSTALLER FUNCTIONS ---
 
 ; uninstaller function
 Function un.onInit
