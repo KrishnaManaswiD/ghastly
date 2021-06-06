@@ -7,7 +7,7 @@
 
 
 ; ==================================================
-; --- GLOBAL VARIABLES ---
+; --- COMPILE TIME CONSTANTS ---
 ; all variables are global no matter where they are declared
 !define APPLICATION_NAME "Ghastly"
 !define DESCRIPTION "A pdf manipulation utility"
@@ -26,7 +26,7 @@
 
 ; ==================================================
 ; --- GENERAL ---
-Name "Ghastly"
+Name ${APPLICATION_NAME}
 Icon "icons\icon.ico"
 OutFile "Ghastly-1.1-setup.exe" ; this is the name of the exe file that this script creates
 
@@ -54,32 +54,47 @@ ShowUninstDetails show
 ; Branding. The text that appears at the bottom of the install window.
 BrandingText " "
 
+
+; ==================================================
+; --- LANGUAGES ---
+ !insertmacro MUI_LANGUAGE "English"
+
+
+; ==================================================
+; --- VERSION INFORMATION ---
+; Output exe version information - shows up in the file properties
+VIProductVersion "1.1.0.0"
+VIFileVersion "1.1.0.0"
+VIAddVersionKey "ProductName" ${APPLICATION_NAME}
+VIAddVersionKey "LegalCopyright" "© Sundara Tejaswi Digumarti and Krishna Manaswi Digumarti"
+VIAddVersionKey /LANG=${LANG_ENGLISH} "FileDescription" ${APPLICATION_NAME}
+
+
 ; ==================================================
 ; --- COMPILER FLAGS ---
 ; Use LZMA Compression algorithm, compression quality is better.
 SetCompressor lzma
+; regenerate install date each time
+SetDateSave off 
 
 
 ; ==================================================
 ; --- INTERFACE SETTINGS ---
 ; MUI_*Macros at the beginning are defined in MUI2.nsh File, please check Modern UI 2 Description.
 
-; The icon file used by the installation package. 
-!define MUI_ICON "icons\icon.ico"
-
-; uninstall icon
-!define MUI_UNICON "icons\icon.ico"
-
-; Do not automatically jump to the finish page. Allow the user to check the install log
-!define MUI_FINISHPAGE_NOAUTOCLOSE
-
-; Display a prompt if the user stops the installation mid way
-!define MUI_ABORTWARNING
+!define MUI_ICON "icons\icon.ico"                                   ; The icon file used by the installation package. 
+!define MUI_UNICON "icons\icon.ico"                                 ; uninstall icon
+!define MUI_HEADERIMAGE_BITMAP "icons\installer_header.bmp"         ; header image for installer page
+!define MUI_HEADERIMAGE_UNBITMAP  "icons\installer_header.bmp"      ; header image for uninstaller page
+!define MUI_WELCOMEFINISHPAGE_BITMAP "icons\installer_welcome.bmp"  ; image for start and finish pages
+!define MUI_FINISHPAGE_NOAUTOCLOSE                                  ; Do not automatically jump to the finish page. Allow the user to check the install log
+!define MUI_ABORTWARNING                                            ; Display a prompt if the user stops the installation mid way
 
 
 ; ==================================================
 ; --- INSTALLER PAGES ---
 ; These are displayed in the order that they are inserted
+; !defines must come before the page
 
 ; Welcome page
 ; This function is called then the Next button is presed on the welcome screen
@@ -91,23 +106,15 @@ SetCompressor lzma
 !define MUI_PAGE_CUSTOMFUNCTION_LEAVE "OnPageDirectoryLeave"
 !insertmacro MUI_PAGE_DIRECTORY
 
+; Components page
+!define MUI_COMPONENTSPAGE_NODESC ; no descriptions will be displayed for individual components
+!insertmacro MUI_PAGE_COMPONENTS
+
 ; Install files page
 !insertmacro MUI_PAGE_INSTFILES
 
 ; Finish page
 !insertmacro MUI_PAGE_FINISH
-
-
-; ==================================================
-; --- VERSION INFORMATION ---
-; Output exe version information
-VIProductVersion "1.1.0.0"
-VIFileVersion "1.1.0.0"
-
-
-; ==================================================
-; --- LANGUAGES ---
- !insertmacro MUI_LANGUAGE "English"
 
 
 ; ==================================================
@@ -124,13 +131,14 @@ ${EndIf}
 
 
 ; ==================================================
-; --- INSTALLER SECTIONS ---
-; Define the components of the installation process. 
-; The installation package must have at least one section.
-; Sections are executed in the instfiles page in the order in which they are defined
-; Commands written in components are executed sequentially during installation.
+; --- INSTALLER SECTIONS --- 
+; The installation package must have at least one section (can also think of these as components).
+; Named sections show up in the components page as a selectable list.
+; Sections are executed in the instfiles page in the order in which they are defined.
+; Commands written within sections are executed sequentially during installation.
 
-Section "Install"
+Section "Ghastly - main program"
+  SectionIn RO ; Read only, always installed
 
   ; Sets output directory
   SetOutPath "$INSTDIR"
@@ -148,12 +156,6 @@ Section "Install"
                       
   ; Uninstaller - See function un.onInit and section "uninstall" for configuration
   writeUninstaller "$INSTDIR\uninstall_${APPLICATION_NAME}.exe"
-
-  ; Start menu
-  createDirectory "$SMPROGRAMS\${APPLICATION_NAME}"
-  createShortCut "$SMPROGRAMS\${APPLICATION_NAME}\${APPLICATION_NAME}.lnk" "$INSTDIR\main.exe" "" "$INSTDIR\icons\icon.ico"
-  createShortCut "$SMPROGRAMS\${APPLICATION_NAME}\Uninstall-${APPLICATION_NAME}.lnk" "$INSTDIR\uninstall_${APPLICATION_NAME}.exe" "" "$INSTDIR\icons\icon.ico"
-  
 
   ; Registry information for add/remove programs
 	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${APPLICATION_NAME}" "DisplayName" "${APPLICATION_NAME} - ${DESCRIPTION}"
@@ -178,6 +180,17 @@ Section "Install"
 
 SectionEnd
 
+Section "Start menu shortcut"
+  ; Start menu
+  createDirectory "$SMPROGRAMS\${APPLICATION_NAME}"
+  createShortCut "$SMPROGRAMS\${APPLICATION_NAME}\${APPLICATION_NAME}.lnk" "$INSTDIR\main.exe" "" "$INSTDIR\icons\icon.ico"
+  createShortCut "$SMPROGRAMS\${APPLICATION_NAME}\Uninstall-${APPLICATION_NAME}.lnk" "$INSTDIR\uninstall_${APPLICATION_NAME}.exe" "" "$INSTDIR\icons\icon.ico"
+SectionEnd
+
+Section "Desktop shortcut"
+  ; Desktop shortcut
+  createShortCut "$DESKTOP\${APPLICATION_NAME}.lnk" "$INSTDIR\main.exe" "" "$INSTDIR\icons\icon.ico"
+SectionEnd
 
 ; ==================================================
 ; --- INSTALLER FUNCTIONS ---
@@ -206,11 +219,14 @@ section "uninstall"
  
 	; Remove Start Menu launcher
 	delete "$SMPROGRAMS\${APPLICATION_NAME}\${APPLICATION_NAME}.lnk"
-  delete "$SMPROGRAMS\${APPLICATION_NAME}\Uninstall ${APPLICATION_NAME}.lnk"
+  delete "$SMPROGRAMS\${APPLICATION_NAME}\Uninstall_${APPLICATION_NAME}.lnk"
 	
   ; Try to remove the Start Menu folder - this will only happen if it is empty
 	rmDir "$SMPROGRAMS\${APPLICATION_NAME}"
  
+  ; remove desktop shortcut
+  delete "$DESKTOP\${APPLICATION_NAME}.lnk"
+
 	; Remove files
 	delete $INSTDIR\main.exe
   delete $INSTDIR\main.exe.manifest
@@ -250,7 +266,6 @@ Function un.onInit
 	next:
 	!insertmacro VerifyUserIsAdmin
 FunctionEnd
-
 
 
 ; --- THE END ---
