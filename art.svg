@@ -23,11 +23,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.85472819"
-     inkscape:cx="108.51318"
-     inkscape:cy="191.92272"
+     inkscape:zoom="2.4175364"
+     inkscape:cx="391.40477"
+     inkscape:cy="531.40112"
      inkscape:document-units="mm"
-     inkscape:current-layer="g1558"
+     inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="false"
      inkscape:window-width="1920"
@@ -608,117 +608,389 @@
         </g>
       </g>
     </g>
+    <rect
+       style="fill:#ececec;fill-opacity:1;stroke-width:3.69273;stroke-linecap:round"
+       id="rect1506"
+       width="67.73333"
+       height="67.73333"
+       x="-88.734024"
+       y="-0.2151497"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-ydpi="96.000008" />
+    <path
+       style="fill:none;stroke:#333333;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M -71.737973,13.539483 V 53.763547"
+       id="path1508" />
+    <path
+       style="fill:none;stroke:#333333;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M -54.867356,13.539483 V 53.763547"
+       id="path1510" />
+    <path
+       style="fill:none;stroke:#333333;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M -37.99674,13.539483 V 53.763547"
+       id="path1512" />
+    <rect
+       style="fill:#333333;fill-opacity:1;stroke:none;stroke-width:4.9068;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1527"
+       width="15.875"
+       height="9.260417"
+       x="-62.804855"
+       y="39.472351"
+       rx="2"
+       ry="2"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-ydpi="96.000008" />
+    <rect
+       style="fill:#333333;fill-opacity:1;stroke:none;stroke-width:4.9068;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1529"
+       width="15.875"
+       height="9.260417"
+       x="-79.602219"
+       y="18.305685"
+       rx="2"
+       ry="2"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-ydpi="96.000008" />
+    <rect
+       style="fill:#333333;fill-opacity:1;stroke:none;stroke-width:4.9068;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1531"
+       width="15.875"
+       height="9.260417"
+       x="-45.706211"
+       y="18.305685"
+       rx="2"
+       ry="2"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-ydpi="96.000008" />
+    <rect
+       style="fill:#ececec;fill-opacity:1;stroke-width:3.69274;stroke-linecap:round"
+       id="rect1506-8"
+       width="67.73333"
+       height="67.73333"
+       x="-88.734016"
+       y="72.809845"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-ydpi="96.000008" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:68.7176px;line-height:1.25;font-family:'Segoe UI';-inkscape-font-specification:'Segoe UI';fill:#333333;fill-opacity:1;stroke:none;stroke-width:1.71793"
+       x="-74.663925"
+       y="131.30479"
+       id="text1577"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-ydpi="96.000008"><tspan
+         sodipodi:role="line"
+         id="tspan1575"
+         x="-74.663925"
+         y="131.30479"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';fill:#333333;fill-opacity:1;stroke-width:1.71793">?</tspan></text>
+    <rect
+       style="fill:#ececec;fill-opacity:1;stroke-width:3.69274;stroke-linecap:round"
+       id="rect1506-8-6"
+       width="67.73333"
+       height="67.73333"
+       x="-88.734016"
+       y="145.83484"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-ydpi="96.000008" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:68.7176px;line-height:1.25;font-family:'Segoe UI';-inkscape-font-specification:'Segoe UI';fill:#333333;fill-opacity:1;stroke:none;stroke-width:1.71793"
+       x="-64.178452"
+       y="204.32979"
+       id="text1577-3"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-ydpi="96.000008"><tspan
+         id="tspan1575-5"
+         x="-64.178452"
+         y="204.32979"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';fill:#333333;fill-opacity:1;stroke-width:1.71793"
+         sodipodi:role="line">i</tspan></text>
     <g
-       id="g1543"
+       id="g1176"
+       inkscape:export-filename="C:\Users\Krishna Manaswi D\Documents\Projects\ghastlyGUI\icons\installer_header.png"
        inkscape:export-xdpi="96.000008"
        inkscape:export-ydpi="96.000008">
+      <rect
+         style="fill:#333333;stroke-width:0.0979114;stroke-linecap:round"
+         id="rect873-4-9"
+         width="39.6875"
+         height="15.08125"
+         x="48.380951"
+         y="105.64435" />
       <g
-         id="g1558"
-         transform="translate(-84.198307,-9.286578)">
-        <rect
-           style="fill:#ececec;fill-opacity:1;stroke-width:3.69273;stroke-linecap:round"
-           id="rect1506"
-           width="67.73333"
-           height="67.73333"
-           x="-4.5357141"
-           y="9.0714283"
-           inkscape:export-xdpi="96.000008"
-           inkscape:export-ydpi="96.000008" />
+         id="g1061"
+         transform="matrix(0.68902394,0,0,0.68902394,12.929874,28.870713)">
         <g
-           id="g1548"
-           transform="translate(17.557313,-4.1159508)"
-           inkscape:export-xdpi="96.000008"
-           inkscape:export-ydpi="96.000008">
-          <path
-             style="fill:none;stroke:#333333;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-             d="M -5.0969788,26.942012 V 67.166076"
-             id="path1508" />
-          <path
-             style="fill:none;stroke:#333333;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-             d="M 11.773638,26.942012 V 67.166076"
-             id="path1510" />
-          <path
-             style="fill:none;stroke:#333333;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-             d="M 28.644254,26.942012 V 67.166076"
-             id="path1512" />
+           id="g973-4"
+           transform="translate(-26.911734,95.778509)">
+          <g
+             id="g991-9">
+            <g
+               id="g984-4">
+              <path
+                 id="rect905-8"
+                 style="fill:#ececec;fill-opacity:1;stroke-width:1.16277;stroke-linecap:round"
+                 d="m 96.047781,16.989238 a 5.9999998,5.9999998 0 0 0 -5.999633,5.999633 5.9999998,5.9999998 0 0 0 0.0031,0.189653 v 11.725382 a 1.1999999,1.1999999 0 0 0 -0.0031,0.08527 1.1999999,1.1999999 0 0 0 1.199927,1.199927 1.1999999,1.1999999 0 0 0 1.199928,-1.199927 1.2,1.2 0 0 1 1.199925,-1.199926 1.2,1.2 0 0 1 1.199928,1.199926 1.1999999,1.1999999 0 0 0 1.200444,1.199927 1.1999999,1.1999999 0 0 0 1.199925,-1.199927 1.2,1.2 0 0 1 1.199927,-1.199926 1.2,1.2 0 0 1 1.199928,1.199926 1.1999999,1.1999999 0 0 0 1.19993,1.199927 1.1999999,1.1999999 0 0 0 1.19992,-1.199927 h 0.003 V 22.988871 h -0.003 a 5.9999998,5.9999998 0 0 0 -6.000149,-5.999633 z" />
+              <ellipse
+                 style="fill:#333333;fill-opacity:1;stroke-width:1.01989;stroke-linecap:round"
+                 id="path897-5"
+                 cx="93.649406"
+                 cy="22.989428"
+                 rx="1.2"
+                 ry="1.8" />
+              <ellipse
+                 style="fill:#333333;fill-opacity:1;stroke-width:1.01989;stroke-linecap:round"
+                 id="circle899-3"
+                 cx="98.449677"
+                 cy="22.989428"
+                 rx="1.2"
+                 ry="1.8" />
+            </g>
+            <ellipse
+               style="fill:#333333;fill-opacity:1;stroke-width:0.854577;stroke-linecap:round"
+               id="path959-4"
+               cx="96.049538"
+               cy="26.58917"
+               rx="0.60000002"
+               ry="0.89999998" />
+          </g>
         </g>
         <rect
-           style="fill:#333333;fill-opacity:1;stroke:none;stroke-width:4.9068;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           id="rect1527"
-           width="15.875"
-           height="9.260417"
-           x="21.393452"
-           y="48.75893"
-           rx="2"
-           ry="2"
-           inkscape:export-xdpi="96.000008"
-           inkscape:export-ydpi="96.000008" />
+           style="fill:#ececec;fill-opacity:1;stroke-width:0.84162;stroke-linecap:round"
+           id="rect993-9"
+           width="8"
+           height="8"
+           x="54.139137"
+           y="120.68269"
+           rx="1.2"
+           ry="1.2" />
+        <g
+           id="g1017-6"
+           transform="translate(-39.012011,96.2251)">
+          <g
+             id="g1183-5">
+            <rect
+               style="fill:#333333;fill-opacity:1;stroke-width:1.10663;stroke-linecap:round"
+               id="rect997-8"
+               width="2.4000001"
+               height="2.4000001"
+               x="93.951149"
+               y="25.257584"
+               rx="0.60000002"
+               ry="0.60000002" />
+            <rect
+               style="fill:#333333;fill-opacity:1;stroke-width:0.969217;stroke-linecap:round"
+               id="rect1001-3"
+               width="6.4000001"
+               height="1"
+               x="93.951149"
+               y="28.657583"
+               rx="0.30000001"
+               ry="0.30000001" />
+            <rect
+               style="fill:#333333;fill-opacity:1;stroke-width:0.969217;stroke-linecap:round"
+               id="rect1003-6"
+               width="6.4000001"
+               height="1"
+               x="93.951149"
+               y="30.657583"
+               rx="0.32000002"
+               ry="0.30000001" />
+          </g>
+        </g>
         <rect
-           style="fill:#333333;fill-opacity:1;stroke:none;stroke-width:4.9068;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           id="rect1529"
-           width="15.875"
-           height="9.260417"
-           x="4.5960865"
-           y="27.592262"
-           rx="2"
-           ry="2"
-           inkscape:export-xdpi="96.000008"
-           inkscape:export-ydpi="96.000008" />
-        <rect
-           style="fill:#333333;fill-opacity:1;stroke:none;stroke-width:4.9068;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           id="rect1531"
-           width="15.875"
-           height="9.260417"
-           x="38.492096"
-           y="27.592262"
-           rx="2"
-           ry="2"
-           inkscape:export-xdpi="96.000008"
-           inkscape:export-ydpi="96.000008" />
-        <rect
-           style="fill:#ececec;fill-opacity:1;stroke-width:3.69274;stroke-linecap:round"
-           id="rect1506-8"
-           width="67.73333"
-           height="67.73333"
-           x="-4.5357113"
-           y="82.09642"
-           inkscape:export-xdpi="96.000008"
-           inkscape:export-ydpi="96.000008" />
+           style="fill:#ececec;fill-opacity:1;stroke-width:0.84162;stroke-linecap:round"
+           id="rect1185-8"
+           width="8"
+           height="8"
+           x="-84.136139"
+           y="120.76768"
+           rx="1.2"
+           ry="1.2"
+           transform="scale(-1,1)" />
+        <g
+           id="g1195-3"
+           transform="matrix(-1,0,0,1,177.28728,96.3101)">
+          <g
+             id="g1193-6">
+            <rect
+               style="fill:#333333;fill-opacity:1;stroke-width:1.10663;stroke-linecap:round"
+               id="rect1187-2"
+               width="2.4000001"
+               height="2.4000001"
+               x="93.951149"
+               y="25.257584"
+               rx="0.60000002"
+               ry="0.60000002" />
+            <rect
+               style="fill:#333333;fill-opacity:1;stroke-width:0.969217;stroke-linecap:round"
+               id="rect1189-3"
+               width="6.4000001"
+               height="1"
+               x="93.951149"
+               y="28.657583"
+               rx="0.30000001"
+               ry="0.30000001" />
+            <rect
+               style="fill:#333333;fill-opacity:1;stroke-width:0.969217;stroke-linecap:round"
+               id="rect1191-3"
+               width="6.4000001"
+               height="1"
+               x="93.951149"
+               y="30.657583"
+               rx="0.32000002"
+               ry="0.30000001" />
+          </g>
+        </g>
+      </g>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;line-height:1.25;font-family:'Segoe UI';-inkscape-font-specification:'Segoe UI';fill:#ececec;fill-opacity:1;stroke:none;stroke-width:1.71793"
+         x="72.233917"
+         y="116.20671"
+         id="text1577-1"
+         inkscape:export-xdpi="96.000008"
+         inkscape:export-ydpi="96.000008"><tspan
+           sodipodi:role="line"
+           id="tspan1575-9"
+           x="72.233917"
+           y="116.20671"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.88056px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';fill:#ececec;fill-opacity:1;stroke-width:1.71793">Ghastly</tspan></text>
+    </g>
+    <g
+       id="g1344"
+       inkscape:export-filename="C:\Users\Krishna Manaswi D\Documents\Projects\ghastlyGUI\icons\installer_welcome.png"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-ydpi="96.000008">
+      <rect
+         style="fill:#333333;stroke-width:0.240291;stroke-linecap:round"
+         id="rect1178"
+         width="43.391666"
+         height="83.07917"
+         x="109.23512"
+         y="106.96726" />
+      <g
+         id="g1325"
+         transform="translate(0,8.2020871)">
+        <g
+           id="g1308"
+           transform="translate(8.7469692,32.695282)">
+          <path
+             id="path1180"
+             style="fill:#ececec;fill-opacity:1;stroke-width:0.801176;stroke-linecap:round"
+             d="m 122.18288,109.19703 a 4.1341435,4.1341435 0 0 0 -4.13389,4.13389 4.1341435,4.1341435 0 0 0 0.002,0.13068 v 8.07907 a 0.82682866,0.82682866 0 0 0 -0.002,0.0587 0.82682866,0.82682866 0 0 0 0.82678,0.82678 0.82682866,0.82682866 0 0 0 0.82678,-0.82678 0.82682873,0.82682873 0 0 1 0.82678,-0.82678 0.82682873,0.82682873 0 0 1 0.82678,0.82678 0.82682866,0.82682866 0 0 0 0.82713,0.82678 0.82682866,0.82682866 0 0 0 0.82678,-0.82678 0.82682873,0.82682873 0 0 1 0.82678,-0.82678 0.82682873,0.82682873 0 0 1 0.82678,0.82678 0.82682866,0.82682866 0 0 0 0.82678,0.82678 0.82682866,0.82682866 0 0 0 0.82677,-0.82678 h 0.002 v -8.2685 h -0.002 a 4.1341435,4.1341435 0 0 0 -4.13425,-4.13389 z" />
+          <ellipse
+             style="fill:#333333;fill-opacity:1;stroke-width:0.702729;stroke-linecap:round"
+             id="ellipse1182"
+             cx="120.53035"
+             cy="113.33131"
+             rx="0.82682878"
+             ry="1.2402431" />
+          <ellipse
+             style="fill:#333333;fill-opacity:1;stroke-width:0.702729;stroke-linecap:round"
+             id="ellipse1184"
+             cx="123.83784"
+             cy="113.33131"
+             rx="0.82682878"
+             ry="1.2402431" />
+          <ellipse
+             style="fill:#333333;fill-opacity:1;stroke-width:0.588824;stroke-linecap:round"
+             id="ellipse1188"
+             cx="122.1841"
+             cy="115.81161"
+             rx="0.41341439"
+             ry="0.62012154" />
+          <rect
+             style="fill:#ececec;fill-opacity:1;stroke-width:0.579896;stroke-linecap:round"
+             id="rect1194"
+             width="5.5121913"
+             height="5.5121913"
+             x="111.84966"
+             y="114.65062"
+             rx="0.82682878"
+             ry="0.82682878" />
+          <rect
+             style="fill:#333333;fill-opacity:1;stroke-width:0.762495;stroke-linecap:round"
+             id="rect1196"
+             width="1.6536576"
+             height="1.6536576"
+             x="112.40087"
+             y="115.20183"
+             rx="0.41341439"
+             ry="0.41341439" />
+          <rect
+             style="fill:#333333;fill-opacity:1;stroke-width:0.667814;stroke-linecap:round"
+             id="rect1198"
+             width="4.4097533"
+             height="0.68902391"
+             x="112.40087"
+             y="117.54451"
+             rx="0.20670719"
+             ry="0.20670719" />
+          <rect
+             style="fill:#333333;fill-opacity:1;stroke-width:0.667814;stroke-linecap:round"
+             id="rect1200"
+             width="4.4097533"
+             height="0.68902391"
+             x="112.40087"
+             y="118.92256"
+             rx="0.22048767"
+             ry="0.20670719" />
+          <rect
+             style="fill:#ececec;fill-opacity:1;stroke-width:0.579896;stroke-linecap:round"
+             id="rect1206"
+             width="5.5121913"
+             height="5.5121913"
+             x="-132.51831"
+             y="114.70918"
+             rx="0.82682878"
+             ry="0.82682878"
+             transform="scale(-1,1)" />
+          <rect
+             style="fill:#333333;fill-opacity:1;stroke-width:0.762495;stroke-linecap:round"
+             id="rect1208"
+             width="1.6536576"
+             height="1.6536576"
+             x="-131.96707"
+             y="115.2604"
+             rx="0.41341439"
+             ry="0.41341439"
+             transform="scale(-1,1)" />
+          <rect
+             style="fill:#333333;fill-opacity:1;stroke-width:0.667814;stroke-linecap:round"
+             id="rect1210"
+             width="4.4097533"
+             height="0.68902391"
+             x="-131.96707"
+             y="117.60308"
+             rx="0.20670719"
+             ry="0.20670719"
+             transform="scale(-1,1)" />
+          <rect
+             style="fill:#333333;fill-opacity:1;stroke-width:0.667814;stroke-linecap:round"
+             id="rect1212"
+             width="4.4097533"
+             height="0.68902391"
+             x="-131.96707"
+             y="118.98112"
+             rx="0.22048767"
+             ry="0.20670719"
+             transform="scale(-1,1)" />
+        </g>
         <text
            xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:68.7176px;line-height:1.25;font-family:'Segoe UI';-inkscape-font-specification:'Segoe UI';fill:#333333;fill-opacity:1;stroke:none;stroke-width:1.71793"
-           x="9.53438"
-           y="140.59137"
-           id="text1577"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;line-height:1.25;font-family:'Segoe UI';-inkscape-font-specification:'Segoe UI';fill:#ececec;fill-opacity:1;stroke:none;stroke-width:1.71793"
+           x="112.55722"
+           y="132.67938"
+           id="text1222"
            inkscape:export-xdpi="96.000008"
            inkscape:export-ydpi="96.000008"><tspan
              sodipodi:role="line"
-             id="tspan1575"
-             x="9.53438"
-             y="140.59137"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';fill:#333333;fill-opacity:1;stroke-width:1.71793">?</tspan></text>
-        <rect
-           style="fill:#ececec;fill-opacity:1;stroke-width:3.69274;stroke-linecap:round"
-           id="rect1506-8-6"
-           width="67.73333"
-           height="67.73333"
-           x="-4.5357113"
-           y="155.12141"
-           inkscape:export-xdpi="96.000008"
-           inkscape:export-ydpi="96.000008" />
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:68.7176px;line-height:1.25;font-family:'Segoe UI';-inkscape-font-specification:'Segoe UI';fill:#333333;fill-opacity:1;stroke:none;stroke-width:1.71793"
-           x="20.019854"
-           y="213.61636"
-           id="text1577-3"
-           inkscape:export-xdpi="96.000008"
-           inkscape:export-ydpi="96.000008"><tspan
-             id="tspan1575-5"
-             x="20.019854"
-             y="213.61636"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';fill:#333333;fill-opacity:1;stroke-width:1.71793"
-             sodipodi:role="line">i</tspan></text>
+             id="tspan1220"
+             x="112.55722"
+             y="132.67938"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';fill:#ececec;fill-opacity:1;stroke-width:1.71793">Ghastly</tspan></text>
       </g>
     </g>
   </g>
