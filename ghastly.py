@@ -1,6 +1,8 @@
 from settingsDialog import settingsDialog
 import sys
 import subprocess
+import ctypes
+from ctypes.util import find_library
 from PySide6 import QtCore, QtWidgets, QtGui
 
 class GhastlyWidget(QtWidgets.QWidget):
@@ -70,7 +72,6 @@ class GhastlyWidget(QtWidgets.QWidget):
         btn_remove.clicked.connect(self.removeItem)
         btn_moveUp.clicked.connect(self.moveItemUp)
         btn_moveDown.clicked.connect(self.moveItemDown)
-        #btn_gsLocation.clicked.connect(self.selectGSLocation)
         btn_combine.clicked.connect(self.combineFiles)
 
         ## create layout and add widgets
@@ -126,12 +127,6 @@ class GhastlyWidget(QtWidgets.QWidget):
         self.txt_saveLocation.setText(saveFileLocation[0])
 
 
-    def selectGSLocation(self):
-        gsLocation = QtWidgets.QFileDialog.getOpenFileName(self, "Browse for ghostscript", QtCore.QStandardPaths.writableLocation(QtCore.QStandardPaths.HomeLocation), "*.exe")
-        self.txt_gsLocation.setText(gsLocation[0])
-        # C:/Program Files/gs/gs9.53.3/bin/
-
-
     def moveItemUp(self):
         current = self.listWidget.currentItem()
         currentSelectedIndex = self.listWidget.row(current)
@@ -157,16 +152,26 @@ class GhastlyWidget(QtWidgets.QWidget):
 
     def combineFiles(self):
         self.statusBar.showMessage("Combining files")
-        self.readSettings()
+        
+        # check if ghostscript is installed and set on path
+        gsExecutable = ""
         if sys.platform == "win32":
-            gsExecutable = self.gsLocation
+            gsdll = find_library("".join(("gsdll", str(ctypes.sizeof(ctypes.c_voidp) * 8), ".dll")))
+            if gsdll == "":
+                self.statusBar.showMessage("Ghostscript location has not been set correctly")
+                return
+            else:
+                if gsdll[-5] == "4": # if gsdll is gsdll64.dll, set executable to gswin64c.exe
+                    gsExecutable = "gswin64c.exe"
+                if gsdll[-5] == "2": # if gsdll is gsdll32.dll, set executable to gswin32c.exe
+                    gsExecutable = "gswin32c.exe"
         elif sys.platform == "linux":
-            gsExecutable = "gs"
-
-        # check if gsExecutable is set
-        if not gsExecutable:
-            self.statusBar.showMessage("Ghostscript location has not been set correctly")
-            return
+            gsLibrary = find_library("gs")
+            if gsdll == "":
+                self.statusBar.showMessage("Ghostscript location has not been set correctly")
+                return
+            else:
+                gsExecutable = "gs"           
 
         basicArgs = "-dBATCH -dNOPAUSE -sDEVICE=pdfwrite -dAutoRotatePages=/None -dAutoFilterColorImages=false -dAutoFilterGrayImages=false -dColorImageFilter=/FlateEncode -dGrayImageFilter=/FlateEncode -dDownsampleMonoImages=false -dDownsampleGrayImages=false"
         
@@ -241,8 +246,13 @@ class GhastlyWidget(QtWidgets.QWidget):
 
     def readSettings(self):
         settings = QtCore.QSettings("TandM", "Ghastly")
-        self.shouldShowConfigAtLaunch = settings.value("shouldShowConfigAtLaunch")
-        self.gsLocation = settings.value("gslocation")
+
+
+    def isGhostscriptInstalled(self):
+        if find_library("".join(("gsdll", str(ctypes.sizeof(ctypes.c_voidp) * 8), ".dll"))) != "":
+            return True
+        else:
+            return False
 
 
     def dragEnterEvent(self, event: QtGui.QDragEnterEvent):
