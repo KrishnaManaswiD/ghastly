@@ -165,7 +165,7 @@ class GhastlyWidget(QtWidgets.QWidget):
                     gsExecutable = "gswin64c.exe"
                 if gsdll[-5] == "2": # if gsdll is gsdll32.dll, set executable to gswin32c.exe
                     gsExecutable = "gswin32c.exe"
-        elif sys.platform == "linux":
+        elif sys.platform == "linux" or sys.platform == "darwin":
             gsLibrary = find_library("gs")
             if gsdll == "":
                 self.statusBar.showMessage("Ghostscript location has not been set correctly")
