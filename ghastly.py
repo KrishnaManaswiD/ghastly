@@ -23,11 +23,11 @@ class GhastlyWidget(QtWidgets.QWidget):
         toolBar = QtWidgets.QToolBar()
         toolBar.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
 
-        config_action = QtGui.QAction("Config", self)
-        config_action.triggered.connect(self.showConfigDialog)
-        config_action.setIcon(QtGui.QIcon('icons/icon_config.png'))
-        config_action.setIconText("Config")
-        toolBar.addAction(config_action)
+        #config_action = QtGui.QAction("Config", self)
+        #config_action.triggered.connect(self.showConfigDialog)
+        #config_action.setIcon(QtGui.QIcon('icons/icon_config.png'))
+        #config_action.setIconText("Config")
+        #toolBar.addAction(config_action)
 
         help_action = QtGui.QAction("Help", self)
         help_action.triggered.connect(self.showHelpDialog)
@@ -78,20 +78,36 @@ class GhastlyWidget(QtWidgets.QWidget):
         mainLayout = QtWidgets.QVBoxLayout(self)
         mainLayout.addWidget(toolBar)
 
-        # a grid layout that is nested within the main layout
-        gridLayout = QtWidgets.QGridLayout()
-        gridLayout.addWidget(lbl_combineFilesPrompt, 0, 0)
-        gridLayout.addWidget(self.listWidget, 1, 0, 4, 2)
-        gridLayout.addWidget(btn_add, 1, 2)
-        gridLayout.addWidget(btn_remove, 2, 2)
-        gridLayout.addWidget(btn_moveUp, 3, 2)
-        gridLayout.addWidget(btn_moveDown, 4, 2)
+        # various features are grouped into tabs. eg. conbine files, config etc.
+        tabWidget = QtWidgets.QTabWidget()
+        mainLayout.addWidget(tabWidget)
+
+        # a grid layout that is nested within the first tab of the tab wiget
+        gridLayoutForTab1 = QtWidgets.QGridLayout()
+        gridLayoutForTab1.addWidget(lbl_combineFilesPrompt, 0, 0)
+        gridLayoutForTab1.addWidget(self.listWidget, 1, 0, 4, 2)
+        gridLayoutForTab1.addWidget(btn_add, 1, 2)
+        gridLayoutForTab1.addWidget(btn_remove, 2, 2)
+        gridLayoutForTab1.addWidget(btn_moveUp, 3, 2)
+        gridLayoutForTab1.addWidget(btn_moveDown, 4, 2)
         #gridLayout.addWidget(btn_gsLocation, 5, 0)
         #gridLayout.addWidget(txt_gsLocation, 5, 1)
-        gridLayout.addWidget(btn_saveAs, 6, 0)
-        gridLayout.addWidget(self.txt_saveLocation, 6, 1)
-        gridLayout.addWidget(btn_combine, 6, 2)
-        mainLayout.addLayout(gridLayout)
+        gridLayoutForTab1.addWidget(btn_saveAs, 6, 0)
+        gridLayoutForTab1.addWidget(self.txt_saveLocation, 6, 1)
+        gridLayoutForTab1.addWidget(btn_combine, 6, 2)
+        #mainLayout.addLayout(gridLayout)
+
+        tab1 = QtWidgets.QWidget()
+        tab1.setLayout(gridLayoutForTab1)
+        tabWidget.addTab(tab1,"Basic")
+
+        # a grid layout that is nested within the second tab of the tab wiget
+        gridLayoutForTab2 = QtWidgets.QGridLayout()
+        
+        tab2 = QtWidgets.QWidget()
+        tab2.setLayout(gridLayoutForTab2)
+        tabWidget.addTab(tab2,"Config")
+
 
         mainLayout.addWidget(self.statusBar)
 
