@@ -15,7 +15,50 @@
    inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)"
    sodipodi:docname="art.svg">
   <defs
-     id="defs2" />
+     id="defs2">
+    <marker
+       style="overflow:visible"
+       id="TriangleOutS"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="TriangleOutS"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.2)"
+         style="fill-rule:evenodd;stroke:#ececec;stroke-width:1pt;stroke-opacity:1;fill:#ececec;fill-opacity:1"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         id="path1269" />
+    </marker>
+    <marker
+       style="overflow:visible;"
+       id="Arrow2Send"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Send"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.3) rotate(180) translate(-2.3,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round;stroke:#ececec;stroke-opacity:1;fill:#ececec;fill-opacity:1"
+         id="path1154" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="TriangleOutM"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="TriangleOutM"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.4)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         id="path1266" />
+    </marker>
+  </defs>
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -23,9 +66,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.4175364"
-     inkscape:cx="391.40477"
-     inkscape:cy="531.40112"
+     inkscape:zoom="0.85472819"
+     inkscape:cx="-529.54423"
+     inkscape:cy="449.57201"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
@@ -34,7 +77,9 @@
      inkscape:window-height="1017"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -663,7 +708,7 @@
        inkscape:export-xdpi="96.000008"
        inkscape:export-ydpi="96.000008" />
     <rect
-       style="fill:#ececec;fill-opacity:1;stroke-width:3.69274;stroke-linecap:round"
+       style="fill:none;fill-opacity:1;stroke-width:3.69274;stroke-linecap:round;stroke:none"
        id="rect1506-8"
        width="67.73333"
        height="67.73333"
@@ -685,27 +730,30 @@
          y="131.30479"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';fill:#333333;fill-opacity:1;stroke-width:1.71793">?</tspan></text>
     <rect
-       style="fill:#ececec;fill-opacity:1;stroke-width:3.69274;stroke-linecap:round"
+       style="fill:none;fill-opacity:1;stroke-width:3.69274;stroke-linecap:round"
        id="rect1506-8-6"
        width="67.73333"
        height="67.73333"
        x="-88.734016"
-       y="145.83484"
+       y="145.83485"
        inkscape:export-xdpi="96.000008"
-       inkscape:export-ydpi="96.000008" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:68.7176px;line-height:1.25;font-family:'Segoe UI';-inkscape-font-specification:'Segoe UI';fill:#333333;fill-opacity:1;stroke:none;stroke-width:1.71793"
-       x="-64.178452"
-       y="204.32979"
-       id="text1577-3"
+       inkscape:export-ydpi="96.000008"
+       inkscape:export-filename="C:\Users\Krishna Manaswi D\Documents\Projects\ghastlyGUI\icons\icon_about_dark.png" />
+    <g
+       id="g1107"
+       transform="translate(63.199643,-4.1160672)"
+       inkscape:export-filename="C:\Users\Krishna Manaswi D\Documents\Projects\ghastlyGUI\icons\icon_about_dark.png"
        inkscape:export-xdpi="96.000008"
-       inkscape:export-ydpi="96.000008"><tspan
-         id="tspan1575-5"
-         x="-64.178452"
-         y="204.32979"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';fill:#333333;fill-opacity:1;stroke-width:1.71793"
-         sodipodi:role="line">i</tspan></text>
+       inkscape:export-ydpi="96.000008">
+      <path
+         id="path1102"
+         style="fill:#333333;fill-opacity:1;stroke-width:2.87007;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none"
+         d="M -190.57617 549.53516 A 95.365998 95.365998 0 0 0 -285.5957 644.90039 A 95.365998 95.365998 0 0 0 -190.23047 740.26758 A 95.365998 95.365998 0 0 0 -94.863281 644.90039 A 95.365998 95.365998 0 0 0 -190.23047 549.53516 A 95.365998 95.365998 0 0 0 -190.57617 549.53516 z M -190.26953 579.23633 A 11.788346 11.788346 0 0 1 -190.23047 579.23633 A 11.788346 11.788346 0 0 1 -178.44141 591.02344 A 11.788346 11.788346 0 0 1 -190.23047 602.8125 A 11.788346 11.788346 0 0 1 -202.01758 591.02344 A 11.788346 11.788346 0 0 1 -190.26953 579.23633 z M -190.23047 614.60156 A 11.788346 11.788346 0 0 1 -178.44141 626.39062 L -178.44141 698.77734 A 11.788346 11.788346 0 0 1 -190.23047 710.56641 A 11.788346 11.788346 0 0 1 -202.01953 698.77734 L -202.01953 626.39062 A 11.788346 11.788346 0 0 1 -190.23047 614.60156 z "
+         transform="matrix(0.26458333,0,0,0.26458333,-67.735357,13.187496)"
+         inkscape:export-filename="C:\Users\Krishna Manaswi D\Documents\Projects\ghastlyGUI\icons\icon_about_dark.png"
+         inkscape:export-xdpi="96.000008"
+         inkscape:export-ydpi="96.000008" />
+    </g>
     <g
        id="g1176"
        inkscape:export-filename="C:\Users\Krishna Manaswi D\Documents\Projects\ghastlyGUI\icons\installer_header.png"
@@ -993,6 +1041,119 @@
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;font-family:'Arial Rounded MT Bold';-inkscape-font-specification:'Arial Rounded MT Bold, ';fill:#ececec;fill-opacity:1;stroke-width:1.71793">Ghastly</tspan></text>
       </g>
     </g>
+    <rect
+       style="fill:#ececec;fill-opacity:1;stroke-width:3.69274;stroke-linecap:round"
+       id="rect1506-2"
+       width="67.73333"
+       height="67.73333"
+       x="-161.75902"
+       y="-0.21515274"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-ydpi="96.000008"
+       inkscape:export-filename="C:\Users\Krishna Manaswi D\Documents\Projects\ghastlyGUI\icons\icon_update_couldron.png" />
+    <g
+       id="g1100"
+       transform="matrix(0.99579829,0,0,0.9744126,0.51642396,-2.0608348)"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-ydpi="96.000008"
+       inkscape:export-filename="C:\Users\Krishna Manaswi D\Documents\Projects\ghastlyGUI\icons\icon_update_couldron.png">
+      <path
+         style="fill:none;stroke:#333333;stroke-width:4.99999;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m -108.83856,33.665958 h -40.22406"
+         id="path1508-3" />
+      <path
+         id="path1019"
+         style="fill:#333333;fill-opacity:1;stroke-width:0.899;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none"
+         d="m -107.926,43.865963 c 0,7.014015 -8.53627,15.874998 -21.02458,15.875 -12.48831,2e-6 -21.02459,-8.860983 -21.02459,-15.875 0,-7.014017 8.53628,-12.700002 21.02459,-12.7 12.48831,2e-6 21.02458,5.685985 21.02458,12.7 z"
+         sodipodi:nodetypes="sssss" />
+      <path
+         style="fill:none;stroke:#333333;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m -113.93822,49.978547 v 7.262416"
+         id="path1036"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:none;stroke:#333333;stroke-width:5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m -143.96296,49.978547 v 7.262416"
+         id="path1038"
+         sodipodi:nodetypes="cc" />
+      <circle
+         style="fill:#333333;fill-opacity:1;stroke-width:0.967012;stroke-linecap:round"
+         id="path1048"
+         cx="-140.76353"
+         cy="18.620052"
+         r="3.175" />
+      <circle
+         style="fill:#333333;fill-opacity:1;stroke-width:1.28935;stroke-linecap:round"
+         id="circle1050"
+         cx="-127.47734"
+         cy="25.739883"
+         r="4.2333331" />
+      <circle
+         style="fill:#333333;fill-opacity:1;stroke-width:0.644675;stroke-linecap:round"
+         id="circle1052"
+         cx="-117.13766"
+         cy="15.675961"
+         r="2.1166666" />
+    </g>
+    <rect
+       style="fill:#ececec;fill-opacity:1;stroke-width:3.69274;stroke-linecap:round"
+       id="rect1109"
+       width="67.73333"
+       height="67.73333"
+       x="-161.75902"
+       y="145.83485"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-ydpi="96.000008"
+       inkscape:export-filename="C:\Users\Krishna Manaswi D\Documents\Projects\ghastlyGUI\icons\icon_update_arrow.png" />
+    <circle
+       style="fill:#333333;fill-opacity:1;stroke-width:0.759372;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:none"
+       id="circle1111"
+       cx="-127.89236"
+       cy="179.70151"
+       r="25.232254"
+       inkscape:export-filename="C:\Users\Krishna Manaswi D\Documents\Projects\ghastlyGUI\icons\icon_update_arrow.png"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-ydpi="96.000008" />
+    <path
+       style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#ececec;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:5.40164;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate;stop-color:#000000"
+       d="m -127.89235,169.92549 a 3.119,2.3387047 0 0 0 -3.11914,2.33881 v 22.2824 a 3.119,2.3387047 0 0 0 3.11914,2.33881 3.119,2.3387047 0 0 0 3.11914,-2.33881 v -22.2824 a 3.119,2.3387047 0 0 0 -3.11914,-2.33881 z"
+       id="path1507"
+       inkscape:export-filename="C:\Users\Krishna Manaswi D\Documents\Projects\ghastlyGUI\icons\icon_update_arrow.png"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-ydpi="96.000008" />
+    <g
+       id="g1497"
+       transform="translate(42.334327,-3.66481)"
+       inkscape:export-filename="C:\Users\Krishna Manaswi D\Documents\Projects\ghastlyGUI\icons\icon_update_arrow.png"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-ydpi="96.000008">
+      <g
+         id="g1501"
+         style="opacity:1">
+        <path
+           style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#ececec;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.2476pt;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate;stop-color:#000000;stop-opacity:1"
+           d="m -170.22668,166.18232 11.52966,13.43757 h -23.05932 z"
+           id="path1503"
+           sodipodi:nodetypes="cccc" />
+      </g>
+    </g>
+    <rect
+       style="fill:none;fill-opacity:1;stroke-width:3.69274;stroke-linecap:round;stroke:none"
+       id="rect1521"
+       width="67.73333"
+       height="67.73333"
+       x="-161.75902"
+       y="72.809845"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-ydpi="96.000008"
+       inkscape:export-filename="C:\Users\Krishna Manaswi D\Documents\Projects\ghastlyGUI\icons\icon_donate.png" />
+    <path
+       id="path1567"
+       style="fill:#333333;fill-opacity:1;stroke:none;stroke-width:0.257684px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m -140.21512,84.176717 c -8.45667,0 -12.67726,7.884898 -12.67726,12.933576 0,3.505287 0.87222,7.042157 3.78737,10.324947 l 17.43769,19.63705 c 0,0 1.99792,2.20881 3.77497,2.10013 1.77705,0.10868 3.77444,-2.10013 3.77444,-2.10013 l 17.4377,-19.63705 c 2.91515,-3.28279 3.78788,-6.81966 3.78788,-10.324947 0,-5.048678 -4.2211,-12.933576 -12.67778,-12.933576 -8.45668,0 -12.32224,8.691459 -12.32224,8.691459 0,0 -3.86608,-8.691459 -12.32277,-8.691459 z"
+       inkscape:export-filename="C:\Users\Krishna Manaswi D\Documents\Projects\ghastlyGUI\icons\icon_donate.png"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-ydpi="96.000008" />
   </g>
   <g
      inkscape:groupmode="layer"
