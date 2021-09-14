@@ -29,17 +29,28 @@ class GhastlyWidget(QtWidgets.QWidget):
         #config_action.setIconText("Config")
         #toolBar.addAction(config_action)
 
-        help_action = QtGui.QAction("Help", self)
-        help_action.triggered.connect(self.showHelpDialog)
-        help_action.setIcon(QtGui.QIcon('icons/icon_help.png'))
-        help_action.setIconText("Help")
-        toolBar.addAction(help_action)
+        # dummy widget to right align buttons in tool bar
+        spacer = QtWidgets.QWidget()
+        spacer.setSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        toolBar.addWidget(spacer)
 
-        about_action = QtGui.QAction("About", self)
-        about_action.triggered.connect(self.showAboutDialog)
-        about_action.setIcon(QtGui.QIcon('icons/icon_about.png'))
-        about_action.setIconText("About")
-        toolBar.addAction(about_action)
+        help_btn_action = QtGui.QAction("Help", self)
+        help_btn_action.triggered.connect(self.showHelpDialog)
+        help_btn_action.setIcon(QtGui.QIcon('icons/icon_help.png'))
+        help_btn_action.setIconText("Help")
+        toolBar.addAction(help_btn_action)
+
+        about_btn_action = QtGui.QAction("About", self)
+        about_btn_action.triggered.connect(self.showAboutDialog)
+        about_btn_action.setIcon(QtGui.QIcon('icons/icon_about_dark.png'))
+        about_btn_action.setIconText("About")
+        toolBar.addAction(about_btn_action)
+
+        donate_btn_action = QtGui.QAction("Donate", self)
+        donate_btn_action.triggered.connect(self.showAboutDialog)
+        donate_btn_action.setIcon(QtGui.QIcon('icons/icon_donate.png'))
+        donate_btn_action.setIconText("Donate")
+        toolBar.addAction(donate_btn_action)
 
         # labels
         lbl_combineFilesPrompt = QtWidgets.QLabel("Choose files to combine")
