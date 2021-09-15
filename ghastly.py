@@ -1,4 +1,5 @@
 from settingsDialog import settingsDialog
+import requests
 import sys
 import subprocess
 import ctypes
@@ -8,6 +9,11 @@ from PySide6 import QtCore, QtWidgets, QtGui
 class GhastlyWidget(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
+
+        ## version check
+        version_file = open("version.txt", "r")
+        self.local_version = float(version_file.read())
+        version_file.close()
 
         ## window settings
         self.setWindowTitle("Ghastly")
@@ -252,10 +258,22 @@ class GhastlyWidget(QtWidgets.QWidget):
         aboutMessageBox.setWindowIcon(QtGui.QIcon('icons/icon.png'))
         aboutMessageBox.setTextFormat(QtCore.Qt.MarkdownText)
 
-        aboutMessageBox.setText("## Ghastly is a software to manipulate pdf files.  \n" +
-        "You are using version 1.1  \n" +
-        "Copyright 2021 Sundara Tejaswi Digumarti and Krishna Manaswi Digumarti. All rights reserved.\n")
+        # todo: add a check for what happens when internet fails
+        isUpdateAvailable, latest_version = self.checkForUpdate()
 
+        aboutMessageBox.setText("## Ghastly is a software to manipulate pdf files.  \n" +
+        "You are using version " + str(self.local_version) + "  \n" +
+        "Latest released version is " + str(latest_version) + "  \n" +
+        "Copyright 2021 Sundara Tejaswi Digumarti and Krishna Manaswi Digumarti.\n")
+
+        btn_update = QtWidgets.QPushButton("Update")
+        btn_update.clicked.connect(self.updateSoftware)
+
+        aboutMessageBox.addButton(QtWidgets.QMessageBox.Ok)
+
+        if(isUpdateAvailable):
+            aboutMessageBox.addButton(btn_update, QtWidgets.QMessageBox.ActionRole)
+        
         aboutMessageBox.setStyleSheet("QLabel{min-width: 600px;}")  # hacky way to set size
         aboutMessageBox.exec_()
 
@@ -264,6 +282,20 @@ class GhastlyWidget(QtWidgets.QWidget):
         configDialog = settingsDialog(self)
         configDialog.exec_()
         pass
+
+
+    def checkForUpdate(self):
+        latest_version_file = requests.get("https://raw.githubusercontent.com/KrishnaManaswiD/ghastly/main/version.txt")
+        latest_version = float(latest_version_file.text)
+        if (self.local_version < latest_version):
+            return True, latest_version
+        else:
+            return False, self.local_version
+
+
+    def updateSoftware(self):
+        # todo: take user to download page
+        print("updating")
 
 
     def writeSettings(self):
@@ -322,6 +354,8 @@ class GhastlyWidget(QtWidgets.QWidget):
         event.accept()
 
 if __name__ == "__main__":
+
+    
     app = QtWidgets.QApplication([])
 
     ghastly = GhastlyWidget()
