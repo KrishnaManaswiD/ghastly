@@ -1,2 +1,2 @@
-# ghastlyGUI
-a simple gui for using ghostscript
+# ghastly
+a tool to manipulate pdf files
