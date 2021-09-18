@@ -1,5 +1,6 @@
 from settingsDialog import settingsDialog
 import requests
+import webbrowser
 import sys
 import subprocess
 import ctypes
@@ -124,7 +125,6 @@ class GhastlyWidget(QtWidgets.QWidget):
         tab2 = QtWidgets.QWidget()
         tab2.setLayout(gridLayoutForTab2)
         tabWidget.addTab(tab2,"Config")
-
 
         mainLayout.addWidget(self.statusBar)
 
@@ -285,17 +285,18 @@ class GhastlyWidget(QtWidgets.QWidget):
 
 
     def checkForUpdate(self):
-        latest_version_file = requests.get("https://raw.githubusercontent.com/KrishnaManaswiD/ghastly/main/version.txt")
-        latest_version = float(latest_version_file.text)
-        if (self.local_version < latest_version):
-            return True, latest_version
-        else:
-            return False, self.local_version
+        latest_version_request = requests.get("https://raw.githubusercontent.com/KrishnaManaswiD/ghastly/main/version.txt")
+        if latest_version_request.status_code == 200:
+            latest_version = float(latest_version_request.text)
+            if (self.local_version < latest_version):
+                return True, latest_version
+            else:
+                return False, self.local_version
+        return False, self.local_version
 
 
     def updateSoftware(self):
-        # todo: take user to download page
-        print("updating")
+        webbrowser.open("https://github.com/KrishnaManaswiD/ghastly/releases")
 
 
     def writeSettings(self):
