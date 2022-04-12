@@ -6,6 +6,7 @@ import subprocess
 import ctypes
 from ctypes.util import find_library
 from PySide6 import QtCore, QtWidgets, QtGui
+from PyPDF2 import PdfFileMerger
 
 class GhastlyWidget(QtWidgets.QWidget):
     def __init__(self):
@@ -59,6 +60,7 @@ class GhastlyWidget(QtWidgets.QWidget):
         donate_btn_action.setIconText("Donate")
         toolBar.addAction(donate_btn_action)
 
+        ## thse go into the first tab
         # labels
         lbl_combineFilesPrompt = QtWidgets.QLabel("Choose files to combine")
         
@@ -90,7 +92,7 @@ class GhastlyWidget(QtWidgets.QWidget):
         btn_remove.clicked.connect(self.removeItem)
         btn_moveUp.clicked.connect(self.moveItemUp)
         btn_moveDown.clicked.connect(self.moveItemDown)
-        btn_combine.clicked.connect(self.combineFiles)
+        btn_combine.clicked.connect(self.combineFiles2)
 
         ## create layout and add widgets
         mainLayout = QtWidgets.QVBoxLayout(self)
@@ -224,6 +226,26 @@ class GhastlyWidget(QtWidgets.QWidget):
         self.statusBar.showMessage("Output has been saved to " + self.txt_saveLocation.text())
 
     
+    def combineFiles2(self):
+        self.statusBar.showMessage("Combining files")
+               
+        # check if save location has been set
+        if not self.txt_saveLocation.text():
+            self.statusBar.showMessage("Please check where you want to save the output file")
+            return
+
+        outputFile = self.txt_saveLocation.text()
+                
+        filesToCombine = []
+        merger = PdfFileMerger()
+        for index in range(self.listWidget.count()):
+            merger.append(self.listWidget.item(index).text())
+
+        merger.write(outputFile)
+        merger.close()
+        self.statusBar.showMessage("Output has been saved to " + self.txt_saveLocation.text())
+
+
     def showHelpDialog(self):
         helpMessageBox = QtWidgets.QMessageBox()
         helpMessageBox.setWindowTitle("Help")
