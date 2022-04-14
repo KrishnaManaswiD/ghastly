@@ -92,7 +92,7 @@ class GhastlyWidget(QtWidgets.QWidget):
         btn_remove.clicked.connect(self.removeItem)
         btn_moveUp.clicked.connect(self.moveItemUp)
         btn_moveDown.clicked.connect(self.moveItemDown)
-        btn_combine.clicked.connect(self.combineFiles2)
+        btn_combine.clicked.connect(self.combineFiles)
 
         ## create layout and add widgets
         mainLayout = QtWidgets.QVBoxLayout(self)
@@ -110,12 +110,9 @@ class GhastlyWidget(QtWidgets.QWidget):
         gridLayoutForTab1.addWidget(btn_remove, 2, 2)
         gridLayoutForTab1.addWidget(btn_moveUp, 3, 2)
         gridLayoutForTab1.addWidget(btn_moveDown, 4, 2)
-        #gridLayout.addWidget(btn_gsLocation, 5, 0)
-        #gridLayout.addWidget(txt_gsLocation, 5, 1)
         gridLayoutForTab1.addWidget(btn_saveAs, 6, 0)
         gridLayoutForTab1.addWidget(self.txt_saveLocation, 6, 1)
         gridLayoutForTab1.addWidget(btn_combine, 6, 2)
-        #mainLayout.addLayout(gridLayout)
 
         tab1 = QtWidgets.QWidget()
         tab1.setLayout(gridLayoutForTab1)
@@ -146,10 +143,7 @@ class GhastlyWidget(QtWidgets.QWidget):
         ## read settings from saved location
         self.readSettings()
         if self.shouldShowConfigAtLaunch == 'true':
-            self.showConfigDialog()
-
-        #if self.gsLocation:
-        #    txt_gsLocation.setText(self.gsLocation)        
+            self.showConfigDialog()      
         
 
     def openFile(self):
@@ -184,49 +178,8 @@ class GhastlyWidget(QtWidgets.QWidget):
         current = self.listWidget.currentItem()
         self.listWidget.takeItem(self.listWidget.row(current))
 
-
-    def combineFiles(self):
-        self.statusBar.showMessage("Combining files")
-        
-        # check if ghostscript is installed and set on path
-        gsExecutable = ""
-        if sys.platform == "win32":
-            gsdll = find_library("".join(("gsdll", str(ctypes.sizeof(ctypes.c_voidp) * 8), ".dll")))
-            if gsdll == "":
-                self.statusBar.showMessage("Ghostscript location has not been set correctly")
-                return
-            else:
-                if gsdll[-5] == "4": # if gsdll is gsdll64.dll, set executable to gswin64c.exe
-                    gsExecutable = "gswin64c.exe"
-                if gsdll[-5] == "2": # if gsdll is gsdll32.dll, set executable to gswin32c.exe
-                    gsExecutable = "gswin32c.exe"
-        elif sys.platform == "linux" or sys.platform == "darwin":
-            gsLibrary = find_library("gs")
-            if gsdll == "":
-                self.statusBar.showMessage("Ghostscript location has not been set correctly")
-                return
-            else:
-                gsExecutable = "gs"           
-
-        basicArgs = "-dBATCH -dNOPAUSE -sDEVICE=pdfwrite -dAutoRotatePages=/None -dAutoFilterColorImages=false -dAutoFilterGrayImages=false -dColorImageFilter=/FlateEncode -dGrayImageFilter=/FlateEncode -dDownsampleMonoImages=false -dDownsampleGrayImages=false"
-        
-        # check if save location has been set
-        if not self.txt_saveLocation.text():
-            self.statusBar.showMessage("Please check where you want to save the output file")
-            return
-
-        outputFile = "-sOutputFile=" + '"' + self.txt_saveLocation.text() +'"'
-                
-        filesToCombine = ""
-        for index in range(self.listWidget.count()):
-            filesToCombine += ' "' + self.listWidget.item(index).text() + '"'
-
-        command = gsExecutable + " " + basicArgs + " " + outputFile + " " + filesToCombine
-        subprocess.run(command)
-        self.statusBar.showMessage("Output has been saved to " + self.txt_saveLocation.text())
-
     
-    def combineFiles2(self):
+    def combineFiles(self):
         self.statusBar.showMessage("Combining files")
                
         # check if save location has been set
@@ -236,14 +189,13 @@ class GhastlyWidget(QtWidgets.QWidget):
 
         outputFile = self.txt_saveLocation.text()
                 
-        filesToCombine = []
         merger = PdfFileMerger()
         for index in range(self.listWidget.count()):
             merger.append(self.listWidget.item(index).text())
 
         merger.write(outputFile)
         merger.close()
-        self.statusBar.showMessage("Output has been saved to " + self.txt_saveLocation.text())
+        self.statusBar.showMessage("Output has been saved to " + outputFile)
 
 
     def showHelpDialog(self):
@@ -254,21 +206,14 @@ class GhastlyWidget(QtWidgets.QWidget):
         helpMessageBox.setText("Steps to use this software")
         helpMessageBox.setTextFormat(QtCore.Qt.MarkdownText)
         helpMessageBox.setText("## Steps to using this software  \n" +
-        "### Step 1: Download and install ghostscript (3rd party software)  \n" +
-        "Visit https://www.ghostscript.com/download/gsdnld.html  \n" +
-        "Download the version suited to your operating system  \n" +
-        "Install it to an accessible location  \n" +
-        "### Step 2: Set the path to the ghostscript executable  \n" +
-        "Click on the **Config** button and set the path to the ghostscript ececutable  \n" +
-        "On Windows, the executable may be located in the bin folder in the installed location - gswin64.exe  \n" +
-        "### Step 3: Choose the pdf files that you want to combine  \n" +
+        "### Step 1: Choose the pdf files that you want to combine  \n" +
         "Click the **Add Files** button to choose files  \n" +
         "You can add multiple files at once  \n" +
         "You can change the order by clicking on a file in the list and using the **Move Up** or **Move Down** buttons  \n" +
         "You can remove a file by selecting it from the list and clicking on the **Remove** button  \n" +
-        "### Step 4: Choose a location to save the combined file  \n" +
+        "### Step 2: Choose a location to save the combined file  \n" +
         "Click on the **Save as** button choose a file name and location for the combined output file  \n" +
-        "### Step 5: Combine the files  \n" +
+        "### Step 3: Combine the files  \n" +
         "Click on the **Combine** button when ready ")
         helpMessageBox.setStyleSheet("QLabel{min-width: 600px;}")  # hacky way to set size
         helpMessageBox.exec_()
@@ -329,12 +274,6 @@ class GhastlyWidget(QtWidgets.QWidget):
     def readSettings(self):
         settings = QtCore.QSettings("TandM", "Ghastly")
 
-
-    def isGhostscriptInstalled(self):
-        if find_library("".join(("gsdll", str(ctypes.sizeof(ctypes.c_voidp) * 8), ".dll"))) != "":
-            return True
-        else:
-            return False
 
 
     def dragEnterEvent(self, event: QtGui.QDragEnterEvent):
