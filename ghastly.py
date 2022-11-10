@@ -12,19 +12,16 @@ class GhastlyWidget(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
 
-        ## version check
-        version_file = open("version.txt", "r")
-        self.local_version = float(version_file.read())
-        version_file.close()
+        ## define version
+        self.local_version = 1.1
 
         ## window settings
         self.setWindowTitle("Ghastly")
         self.setWindowIcon(QtGui.QIcon('icons/icon.png'))
         self.setAcceptDrops(True)  # allows dragging and dropping files into the application
 
-        ## variables
+        ## variables - mostly for debug
         self.shouldShowConfigAtLaunch = False
-        self.gsLocation = ""
 
         ## create widgets
         # tool bar - our application does not have a menu bar
@@ -75,10 +72,8 @@ class GhastlyWidget(QtWidgets.QWidget):
         btn_remove = QtWidgets.QPushButton("Remove")
         btn_saveAs = QtWidgets.QPushButton("Save as")
         btn_combine = QtWidgets.QPushButton("Combine")
-        #btn_gsLocation = QtWidgets.QPushButton("GS location")
         
         # editable texts
-        #txt_gsLocation = QtWidgets.QLineEdit("")
         self.txt_saveLocation = QtWidgets.QLineEdit("")
 
         # status bar
@@ -252,13 +247,18 @@ class GhastlyWidget(QtWidgets.QWidget):
 
 
     def checkForUpdate(self):
-        latest_version_request = requests.get("https://raw.githubusercontent.com/KrishnaManaswiD/ghastly/main/version.txt")
-        if latest_version_request.status_code == 200:
-            latest_version = float(latest_version_request.text)
-            if (self.local_version < latest_version):
-                return True, latest_version
-            else:
-                return False, self.local_version
+        try:
+            latest_version_request = requests.get("https://api.github.com/repos/KrishnaManaswiD/ghastly/releases/latest")
+        except requests.exceptions.ConnectionError as exception:
+            # todo: change the line below to deal with connection error
+            pass
+        else:
+            if latest_version_request.status_code == 200:
+                latest_version = float(latest_version_request.json()["tag_name"][1:])
+                if (self.local_version < latest_version):
+                    return True, latest_version
+                else:
+                    return False, self.local_version
         return False, self.local_version
 
 
