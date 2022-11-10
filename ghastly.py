@@ -2,9 +2,6 @@ from settingsDialog import settingsDialog
 import requests
 import webbrowser
 import sys
-import subprocess
-import ctypes
-from ctypes.util import find_library
 from PySide6 import QtCore, QtWidgets, QtGui
 from PyPDF2 import PdfFileMerger
 
@@ -226,7 +223,7 @@ class GhastlyWidget(QtWidgets.QWidget):
         aboutMessageBox.setText("## Ghastly is a software to manipulate pdf files.  \n" +
         "You are using version " + str(self.local_version) + "  \n" +
         "Latest released version is " + str(latest_version) + "  \n" +
-        "Copyright 2021 Sundara Tejaswi Digumarti and Krishna Manaswi Digumarti.\n")
+        "Copyright 2022 Sundara Tejaswi Digumarti and Krishna Manaswi Digumarti.\n")
 
         btn_update = QtWidgets.QPushButton("Update")
         btn_update.clicked.connect(self.updateSoftware)
