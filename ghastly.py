@@ -3,7 +3,7 @@ import requests
 import webbrowser
 import sys
 from PySide6 import QtCore, QtWidgets, QtGui
-from PyPDF2 import PdfFileMerger
+from PyPDF2 import PdfMerger
 
 class GhastlyWidget(QtWidgets.QWidget):
     def __init__(self):
@@ -181,9 +181,9 @@ class GhastlyWidget(QtWidgets.QWidget):
 
         outputFile = self.txt_saveLocation.text()
                 
-        merger = PdfFileMerger()
+        merger = PdfMerger()
         for index in range(self.listWidget.count()):
-            merger.append(self.listWidget.item(index).text())
+            merger.append(self.listWidget.item(index).text(), import_outline=False)
 
         merger.write(outputFile)
         merger.close()
