@@ -57,6 +57,7 @@ class GhastlyWidget(QtWidgets.QWidget):
         ## thse go into the first tab
         # labels
         lbl_combineFilesPrompt = QtWidgets.QLabel("Choose files to combine")
+        lbl_organiseFilesPrompt = QtWidgets.QLabel("Choose file to (re)organise")
         
         # list that showes files
         self.listWidget = QtWidgets.QListWidget()
@@ -69,6 +70,10 @@ class GhastlyWidget(QtWidgets.QWidget):
         btn_remove = QtWidgets.QPushButton("Remove")
         btn_saveAs = QtWidgets.QPushButton("Save as")
         btn_combine = QtWidgets.QPushButton("Combine")
+
+        btn_choose_file = QtWidgets.QPushButton("Choose File")
+        btn_saveAs_2 = QtWidgets.QPushButton("Save as")
+        btn_organise = QtWidgets.QPushButton("Save")
         
         # editable texts
         self.txt_saveLocation = QtWidgets.QLineEdit("")
@@ -86,11 +91,15 @@ class GhastlyWidget(QtWidgets.QWidget):
         btn_moveDown.clicked.connect(self.moveItemDown)
         btn_combine.clicked.connect(self.combineFiles)
 
+        btn_choose_file.clicked.connect(self.openFile)
+        btn_saveAs_2.clicked.connect(self.selectSaveLocation)
+        # btn_organise.clicked.connect(self.organiseFiles)
+
         ## create layout and add widgets
         mainLayout = QtWidgets.QVBoxLayout(self)
         mainLayout.addWidget(toolBar)
 
-        # various features are grouped into tabs. eg. conbine files, config etc.
+        # various features are grouped into tabs. eg. combine files, config etc.
         tabWidget = QtWidgets.QTabWidget()
         mainLayout.addWidget(tabWidget)
 
@@ -108,14 +117,19 @@ class GhastlyWidget(QtWidgets.QWidget):
 
         tab1 = QtWidgets.QWidget()
         tab1.setLayout(gridLayoutForTab1)
-        tabWidget.addTab(tab1,"Basic")
+        tabWidget.addTab(tab1,"Combine")
 
         # a grid layout that is nested within the second tab of the tab wiget
         gridLayoutForTab2 = QtWidgets.QGridLayout()
+        gridLayoutForTab2.addWidget(lbl_organiseFilesPrompt, 0, 0)
+        gridLayoutForTab2.addWidget(btn_choose_file, 1, 0)
+        gridLayoutForTab2.addWidget(btn_saveAs_2, 6, 0)
+        # gridLayoutForTab2.addWidget(self.txt_saveLocation, 6, 1)
+
         
         tab2 = QtWidgets.QWidget()
         tab2.setLayout(gridLayoutForTab2)
-        tabWidget.addTab(tab2,"Config")
+        tabWidget.addTab(tab2,"Organise")
 
         mainLayout.addWidget(self.statusBar)
 
