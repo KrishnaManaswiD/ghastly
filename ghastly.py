@@ -223,7 +223,7 @@ class GhastlyWidget(QtWidgets.QWidget):
         aboutMessageBox.setText("## Ghastly is a software to manipulate pdf files.  \n" +
         "You are using version " + str(self.local_version) + "  \n" +
         "Latest released version is " + str(latest_version) + "  \n" +
-        "Copyright 2022 Sundara Tejaswi Digumarti and Krishna Manaswi Digumarti.\n")
+        "Copyright 2024 Sundara Tejaswi Digumarti and Krishna Manaswi Digumarti.\n")
 
         btn_update = QtWidgets.QPushButton("Update")
         btn_update.clicked.connect(self.updateSoftware)
